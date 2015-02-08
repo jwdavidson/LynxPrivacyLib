@@ -47,6 +47,7 @@ namespace LynxPrivacyLib
             }
             GetAgreedHashAlgorithm();
             GetAgreedSymmetricKeyAlgorithm();
+            GetAgreedCompressionAlgorithm();
 
         }
 
@@ -55,7 +56,7 @@ namespace LynxPrivacyLib
             List<HashAlgorithmTag> prefHash = AllowedHashAlgorithms;
             foreach (KeySignatureSubpacketVectors keySpvs in KeySigSpVectors) {
                 List<HashAlgorithmTag> testPrefs = GetPreferredHashAlgorithmsForKey(keySpvs.SSpVectors);
-                prefHash = (List<HashAlgorithmTag>)prefHash.Intersect(testPrefs);
+                prefHash = prefHash.Intersect(testPrefs).ToList();
                 if (prefHash.Count <= 0)
                     break;    // no need to test any further, use the default
             }
@@ -83,7 +84,7 @@ namespace LynxPrivacyLib
             List<SymmetricKeyAlgorithmTag> prefEncryption = AllowedEncryptionAlgorithms;
             foreach (KeySignatureSubpacketVectors keySpvs in KeySigSpVectors) {
                 List<SymmetricKeyAlgorithmTag> testPrefs = GetPreferredSymmetricKeyAlgorithmsForKey(keySpvs.SSpVectors);
-                prefEncryption = (List<SymmetricKeyAlgorithmTag>)prefEncryption.Intersect(testPrefs);
+                prefEncryption = prefEncryption.Intersect(testPrefs).ToList(); ;
                 if (prefEncryption.Count <= 0)
                     break;
             }
@@ -111,7 +112,7 @@ namespace LynxPrivacyLib
             List<CompressionAlgorithmTag> prefCompression = AllowedCompressionAlgorithms;
             foreach (KeySignatureSubpacketVectors keySpvs in KeySigSpVectors) {
                 List<CompressionAlgorithmTag> testPrefs = GetPreferredCompressionAlgorithmForKey(keySpvs.SSpVectors);
-                prefCompression = (List<CompressionAlgorithmTag>)prefCompression.Intersect(testPrefs);
+                prefCompression = prefCompression.Intersect(testPrefs).ToList();
                 if (prefCompression.Count <= 0)
                     break;
             }
@@ -139,15 +140,13 @@ namespace LynxPrivacyLib
             List<PgpSignatureSubpacketVector> result = new List<PgpSignatureSubpacketVector>();
             if (key.IsMasterKey) {
                 foreach (int certificationType in certificationTypes) {
-                    List<PgpSignature> mkList = (List<PgpSignature>)key.GetSignaturesOfType(certificationType);
-                    foreach (PgpSignature sig in mkList) {
+                    foreach (PgpSignature sig in key.GetSignaturesOfType(certificationType)) {
                         if (sig.HasSubpackets)
                             result.Add(sig.GetHashedSubPackets());
                     }
                 }
             } else {
-                List<PgpSignature> psList = (List<PgpSignature>)key.GetSignaturesOfType(PgpSignature.SubkeyBinding);
-                foreach (PgpSignature sig in psList) {
+                foreach (PgpSignature sig in key.GetSignaturesOfType(PgpSignature.SubkeyBinding)) {
                     if (sig.HasSubpackets)
                         result.Add(sig.GetHashedSubPackets());
                 }

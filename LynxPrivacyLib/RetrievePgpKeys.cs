@@ -16,7 +16,7 @@ namespace LynxPrivacyLib
         public PgpPrivateKey PrivateKey { get; private set; }
         public PgpSecretKey SecretKey { get; private set; }
 
-        public RetrievePgpKeys(List<string> publicKeyNames, string privateKeyName, char[] passPhrase, string keyPath)
+        public RetrievePgpKeys(List<string> publicKeyNames, string privateKeyName, char[] passPhrase, string keyPath, bool toEncrypt)
         {
             if (publicKeyNames == null || publicKeyNames.Count <= 0)
                 throw new ArgumentNullException("publicKeyName");
@@ -38,17 +38,54 @@ namespace LynxPrivacyLib
             foreach (string publicKeyName in publicKeyNames) {
                 PublicKeys.Add(ReadPublicKey(Path.Combine(keyPath, publicKeyName)));
             }
-            SecretKey = ReadSecretKey(Path.Combine(keyPath, privateKeyName));
+            SecretKey = ReadSecretKey(Path.Combine(keyPath, privateKeyName), toEncrypt);
             PrivateKey = ReadPrivateKey(passPhrase);
-            
+
         }
 
-        private PgpSecretKey ReadSecretKey(string privateKeyPath)
+        // Gets the data from the database
+        public RetrievePgpKeys(List<string> publicKeyEmails, string privateKeyEmail, char[] passPhrase, bool toEncrypt, KeyStoreDB keyStoreDb)
+        {
+            if (publicKeyEmails == null || publicKeyEmails.Count <= 0)
+                throw new ArgumentNullException("publicKeyName");
+            if (string.IsNullOrEmpty(privateKeyEmail))
+                throw new ArgumentNullException("privateKeyName");
+            if (passPhrase == null || passPhrase.Count() <= 0)
+                throw new ArgumentNullException("passPhrase");
+
+            PublicKeys = new List<PgpPublicKey>();
+
+            foreach (string publicKeyEmail in publicKeyEmails) {
+                KeyUsers keyUser = keyStoreDb.KeyUsers.Where(u => u.Email == publicKeyEmail).FirstOrDefault();
+                if (keyUser != null)
+                    PublicKeys.Add(ReadPublicKey(keyUser.KeyStoreID, keyStoreDb));
+            }
+            KeyUsers keySecUser = keyStoreDb.KeyUsers.Where(u => u.Email == privateKeyEmail).FirstOrDefault();
+            SecretKey = ReadSecretKey(keySecUser.KeyStoreID, keyStoreDb, toEncrypt);
+            PrivateKey = ReadPrivateKey(passPhrase);
+
+        }
+
+        private PgpSecretKey ReadSecretKey(long keyId, KeyStoreDB keyStoreDb, bool toEncrypt)
+        {
+            string armouredKeyFile = keyStoreDb.KeyStores.Find(keyId).ArmouredKeyFile;
+            using (Stream keyIn = new MemoryStream(Encoding.UTF8.GetBytes(armouredKeyFile))){
+                using (Stream inputStream = PgpUtilities.GetDecoderStream(keyIn)) {
+                    PgpSecretKeyRingBundle secretKeyRingBundle = new PgpSecretKeyRingBundle(inputStream);
+                    PgpSecretKey foundKey = toEncrypt ? GetFirstSecretKey(secretKeyRingBundle) : GetLastSecretKey(secretKeyRingBundle);
+                    if (foundKey != null)
+                        return foundKey;
+                }
+            }
+            throw new Exception("Unable to find signing key in key ring.");
+        }
+
+        private PgpSecretKey ReadSecretKey(string privateKeyPath, bool toEncrypt)
         {
             using (Stream keyIn = File.OpenRead(privateKeyPath)) {
                 using (Stream inputStream = PgpUtilities.GetDecoderStream(keyIn)) {
                     PgpSecretKeyRingBundle secretKeyRingBundle = new PgpSecretKeyRingBundle(inputStream);
-                    PgpSecretKey foundKey = GetFirstSecretKey(secretKeyRingBundle);
+                    PgpSecretKey foundKey = toEncrypt ? GetFirstSecretKey(secretKeyRingBundle) : GetLastSecretKey(secretKeyRingBundle);
                     if (foundKey != null)
                         return foundKey;
                 }
@@ -66,6 +103,28 @@ namespace LynxPrivacyLib
                     return key;
             }
             return null;
+        }
+
+        private PgpSecretKey GetLastSecretKey(PgpSecretKeyRingBundle secretKeyRingBundle)
+        {
+            return (from PgpSecretKeyRing kRing in secretKeyRingBundle.GetKeyRings()
+                    select kRing.GetSecretKeys().Cast<PgpSecretKey>()
+                                                    .LastOrDefault(k => k.IsSigningKey))
+                                                    .LastOrDefault(key => key != null);
+        }
+
+        private PgpPublicKey ReadPublicKey(long keyId, KeyStoreDB keyStoreDb)
+        {
+            string armouredKeyFile = keyStoreDb.KeyStores.Find(keyId).ArmouredKeyFile;
+            using (Stream keyIn = new MemoryStream(Encoding.UTF8.GetBytes(armouredKeyFile))){
+                using (Stream inputStream = PgpUtilities.GetDecoderStream(keyIn)) {
+                    PgpPublicKeyRingBundle publicKeyRingBundle = new PgpPublicKeyRingBundle(inputStream);
+                    PgpPublicKey foundKey = GetFirstPublicKey(publicKeyRingBundle);
+                    if (foundKey != null)
+                        return foundKey;
+                }
+            }
+            throw new Exception("Unable to find encryption key in public key ring.");
         }
 
         private PgpPublicKey ReadPublicKey(string publicKeyPath)
