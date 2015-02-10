@@ -9,16 +9,17 @@ using Org.BouncyCastle.Bcpg.OpenPgp;
 using Org.BouncyCastle.Bcpg.Sig;
 using Org.BouncyCastle.Security;
 
+
 namespace LynxPrivacyLib
 {
-    public class PgpEncryptFile
+    public class PgpEncryptString
     {
         private RetrievePgpKeys m_encryptionKeys;
         private AlgorithmAgreement m_algorithmsAgreed;
         private const int BUFFER_SIZE = 0x10000;
 
 
-        public PgpEncryptFile(RetrievePgpKeys keys)
+        public PgpEncryptString(RetrievePgpKeys keys)
         {
             if (keys == null)
                 throw new ArgumentNullException("keys");
@@ -27,49 +28,55 @@ namespace LynxPrivacyLib
             m_algorithmsAgreed = new AlgorithmAgreement(keys.PublicKeys);
         }
 
-        public void EncryptAndSign(Stream outputStream, FileInfo unencryptedFileInfo, bool armour = false, bool signOnly = false)
+        public string EncryptAndSign(string unencryptedString, bool armour = false, bool signOnly = false)
         {
-            if (outputStream == null)
-                throw new ArgumentNullException("outputStream");
-            if (unencryptedFileInfo == null)
-                throw new ArgumentNullException("unencryptedFileInfo");
-            if (!File.Exists(unencryptedFileInfo.FullName))
-                throw new FileNotFoundException(unencryptedFileInfo.FullName);
+            if (string.IsNullOrEmpty(unencryptedString))
+                throw new ArgumentNullException("unencryptedString");
 
             if (signOnly) {
                 m_algorithmsAgreed.AgreedSymmetricKeyAlgorithm = SymmetricKeyAlgorithmTag.Null;
                 m_algorithmsAgreed.AgreedCompressionAlgorithm = CompressionAlgorithmTag.Uncompressed;
             }
-            EncryptAndSign(outputStream, unencryptedFileInfo, armour);
+            byte[] unencryptedBytes = Encoding.UTF8.GetBytes(unencryptedString);
+            return EncryptAndSign(unencryptedBytes, armour);
         }
 
-        private void EncryptAndSign(Stream outputStream, FileInfo unencryptedFileInfo, bool armour)
+        private string EncryptAndSign(byte[] unencryptedBytes, bool armour)
         {
+            string returnStr = string.Empty;
+            Stream readStream = new MemoryStream();
+            MemoryStream armourStream = new MemoryStream();
             if (armour)
-                outputStream = new ArmoredOutputStream(outputStream);
-            using (Stream encryptedOut = ChainEncryptedOut(outputStream)) {
+                readStream = new ArmoredOutputStream(armourStream);
+            using (Stream encryptedOut = ChainEncryptedOut(readStream)) {
                 using (Stream compressedOut = ChainCompressedOut(encryptedOut, m_algorithmsAgreed.AgreedCompressionAlgorithm)) {
                     PgpSignatureGenerator sigGenerator = InitSignatureGenerator(compressedOut);
-                    using (Stream literalOut = ChainLiteralOut(compressedOut, unencryptedFileInfo)) {
-                        using (FileStream inputFile = unencryptedFileInfo.OpenRead()) {
-                            WriteOutputAndSign(compressedOut, literalOut, inputFile, sigGenerator);
-                        }
+                    using (Stream literalOut = ChainLiteralOut(compressedOut, unencryptedBytes)) {
+                        WriteOutputAndSign(compressedOut, literalOut, unencryptedBytes, sigGenerator);
                     }
                 }
+                if (!armour) {
+                    StreamReader reader = new StreamReader(armourStream);
+                    returnStr = reader.ReadToEnd();
+                    reader.Close();
+                }
             }
-            if (armour)
-                outputStream.Close();
+            if (armour) {
+                readStream.Close();
+                char[] buffer = new char[BUFFER_SIZE];
+                StreamReader reader = new StreamReader(armourStream);
+                armourStream.Position = 0;
+                returnStr = reader.ReadToEnd();
+                reader.Close();
+            }
+
+
+            return returnStr;
         }
 
-        private static void WriteOutputAndSign(Stream compressedOut, Stream literalOut, FileStream inputFile, PgpSignatureGenerator sigGenerator)
+        private static void WriteOutputAndSign(Stream compressedOut, Stream literalOut, byte[] unencryptedBytes, PgpSignatureGenerator sigGenerator)
         {
-            int length = 0;
-            byte[] buf = new byte[BUFFER_SIZE];
-            while ((length = inputFile.Read(buf, 0, buf.Length)) > 0) {
-                literalOut.Write(buf, 0, length);
-                sigGenerator.Update(buf, 0, length);
-            }
- 
+            sigGenerator.Update(unencryptedBytes);
             sigGenerator.Generate().Encode(compressedOut);
         }
 
@@ -95,11 +102,12 @@ namespace LynxPrivacyLib
             return pgpCompDataGenerator.Open(encryptedOut);
         }
 
-        private static Stream ChainLiteralOut(Stream compressedOut, FileInfo file)
+        private static Stream ChainLiteralOut(Stream compressedOut, byte[] clearData)
         {
-            PgpLiteralDataGenerator pgpLiteralDataGenerator = new PgpLiteralDataGenerator();
+            string fileName = PgpLiteralData.Console;
+            PgpLiteralDataGenerator literalData = new PgpLiteralDataGenerator();
 
-            return pgpLiteralDataGenerator.Open(compressedOut, PgpLiteralData.Binary, file);
+            return literalData.Open(compressedOut, PgpLiteralData.Binary, fileName, DateTime.UtcNow, clearData);
         }
 
         private PgpSignatureGenerator InitSignatureGenerator(Stream compressedOut)

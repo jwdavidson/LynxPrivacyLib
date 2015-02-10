@@ -68,8 +68,8 @@
     <Compile Include="KeyUsers.cs" />
     <Compile Include="PGPDecryptClipboard.cs" />
     <Compile Include="PgpDecryptFile.cs" />
-    <Compile Include="PgpEncryptClipboard.cs" />
     <Compile Include="PgpEncryptFile.cs" />
+    <Compile Include="PgpEncryptString.cs" />
     <Compile Include="PgpKeyserverGetKey.cs" />
     <Compile Include="PgpKeyserverPostKey.cs" />
     <Compile Include="PgpKeyserverSearch.cs" />

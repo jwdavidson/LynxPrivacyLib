@@ -14,8 +14,8 @@ namespace LynxPrivacyLib
     public class AlgorithmAgreement
     {
         public HashAlgorithmTag AgreedHashAlgorithm { get; private set; }
-        public SymmetricKeyAlgorithmTag AgreedSymmetricKeyAlgorithm { get; private set; }
-        public CompressionAlgorithmTag AgreedCompressionAlgorithm { get; private set; }
+        public SymmetricKeyAlgorithmTag AgreedSymmetricKeyAlgorithm { get; internal set; }
+        public CompressionAlgorithmTag AgreedCompressionAlgorithm { get; internal set; }
 
         private List<int> certificationTypes = new List<int>() { PgpSignature.CasualCertification, 
                             PgpSignature.DefaultCertification, PgpSignature.NoCertification, PgpSignature.PositiveCertification};

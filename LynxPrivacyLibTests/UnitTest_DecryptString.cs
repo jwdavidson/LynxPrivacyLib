@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Org.BouncyCastle.Bcpg;
@@ -13,7 +14,7 @@ namespace LynxPrivacyLibTests
     public class UnitTest_DecryptString
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestMethod1_EncryptArmoured()
         {
             RetrievePgpKeys keySetEnc = new RetrievePgpKeys(new List<string> { "jwdavidson+BcPGPTest@gmail_com_public.asc" },
                     "jwdavidson+BcPGPTest@gmail_com_secret.asc",
@@ -22,8 +23,8 @@ namespace LynxPrivacyLibTests
             StringBuilder testString = new StringBuilder();
             testString.AppendLine("This is some text to test the encryption algorithm in my code for PGP.");
             testString.AppendLine("This is a second line of text with a      series    of spaces  in the    middle of the text.");
-            byte[] returnedBytes = PgpEncryptClipboard.encrypt(testString.ToString(), keySetEnc, true);
-            string Returned = Encoding.UTF8.GetString(returnedBytes);
+            PgpEncryptString testEncrypt = new PgpEncryptString(keySetEnc);
+            string Returned = testEncrypt.EncryptAndSign(testString.ToString(), true);
 
             RetrievePgpKeys keySetUnc = new RetrievePgpKeys(new List<string> { "jwdavidson+BcPGPTest@gmail_com_public.asc" },
                     "jwdavidson+BcPGPTest@gmail_com_secret.asc",
@@ -34,5 +35,7 @@ namespace LynxPrivacyLibTests
 
             Assert.IsTrue(Decrypted.Equals(testString.ToString()));
         }
+
+
     }
 }
