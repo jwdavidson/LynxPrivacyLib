@@ -10,7 +10,7 @@ using Org.BouncyCastle.Security;
 
 namespace LynxPrivacyLib
 {
-    public class PGPDecryptClipboard
+    public class PGPDecryptString
     {
         public static byte[] Decrypt(string encryptedText, RetrievePgpKeys keys)
         {

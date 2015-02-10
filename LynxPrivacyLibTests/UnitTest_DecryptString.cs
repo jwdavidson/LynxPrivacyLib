@@ -30,7 +30,7 @@ namespace LynxPrivacyLibTests
                     "jwdavidson+BcPGPTest@gmail_com_secret.asc",
                     new char[] { 'W', 'i', '7', 'a', 'r', 'd', 'r', 'y', '!', 'T', 'e', 's', 't' },
                     @"C:\Users\John\BcPGP\", true);
-            byte[] unencryptedBytes = PGPDecryptClipboard.Decrypt(Returned, keySetUnc);
+            byte[] unencryptedBytes = PGPDecryptString.Decrypt(Returned, keySetUnc);
             string Decrypted = Encoding.UTF8.GetString(unencryptedBytes);
 
             Assert.IsTrue(Decrypted.Equals(testString.ToString()));
