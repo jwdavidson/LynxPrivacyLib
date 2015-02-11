@@ -76,7 +76,8 @@ namespace LynxPrivacyLib
 
         private static void WriteOutputAndSign(Stream compressedOut, Stream literalOut, byte[] unencryptedBytes, PgpSignatureGenerator sigGenerator)
         {
-            sigGenerator.Update(unencryptedBytes);
+            literalOut.Write(unencryptedBytes, 0, unencryptedBytes.Length);
+            sigGenerator.Update(unencryptedBytes, 0, unencryptedBytes.Length);
             sigGenerator.Generate().Encode(compressedOut);
         }
 
@@ -104,16 +105,16 @@ namespace LynxPrivacyLib
 
         private static Stream ChainLiteralOut(Stream compressedOut, byte[] clearData)
         {
-            string fileName = PgpLiteralData.Console;
+            string fileName = "clip";
             PgpLiteralDataGenerator literalData = new PgpLiteralDataGenerator();
 
-            return literalData.Open(compressedOut, PgpLiteralData.Binary, fileName, DateTime.UtcNow, clearData);
+            return literalData.Open(compressedOut, PgpLiteralData.Binary, fileName, clearData.Length, DateTime.UtcNow);
         }
 
         private PgpSignatureGenerator InitSignatureGenerator(Stream compressedOut)
         {
             const bool IsCritical = false;
-            const bool IsNested = true;
+            const bool IsNested = false;
 
             PublicKeyAlgorithmTag tag = m_encryptionKeys.SecretKey.PublicKey.Algorithm;
 

@@ -16,7 +16,8 @@ namespace LynxPrivacyLibTests
         [TestMethod]
         public void TestMethod1_EncryptArmoured()
         {
-            RetrievePgpKeys keySetEnc = new RetrievePgpKeys(new List<string> { "jwdavidson+BcPGPTest@gmail_com_public.asc" },
+            RetrievePgpKeys keySetEnc = new RetrievePgpKeys(new List<string> { "jwdavidson+BcPGPTest@gmail_com_public.asc",
+                        "testuser@example_com_public.asc"},
                     "jwdavidson+BcPGPTest@gmail_com_secret.asc",
                     new char[] { 'W', 'i', '7', 'a', 'r', 'd', 'r', 'y', '!', 'T', 'e', 's', 't' },
                     @"C:\Users\John\BcPGP\", true);
