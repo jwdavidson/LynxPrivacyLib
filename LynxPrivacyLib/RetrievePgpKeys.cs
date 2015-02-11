@@ -66,6 +66,15 @@ namespace LynxPrivacyLib
 
         }
 
+        public RetrievePgpKeys(string privateKeyEmail, bool toEncrypt, KeyStoreDB keyStoreDb)
+        {
+            if (string.IsNullOrEmpty(privateKeyEmail))
+                throw new ArgumentNullException("privateKeyName");
+
+            KeyUsers keySecUser = keyStoreDb.KeyUsers.Where(u => u.Email == privateKeyEmail).FirstOrDefault();
+            SecretKey = ReadSecretKey(keySecUser.KeyStoreID, keyStoreDb, toEncrypt);
+        }
+
         private PgpSecretKey ReadSecretKey(long keyId, KeyStoreDB keyStoreDb, bool toEncrypt)
         {
             string armouredKeyFile = keyStoreDb.KeyStores.Find(keyId).ArmouredKeyFile;
