@@ -65,5 +65,23 @@ namespace LynxPrivacyLib
             }
             return null;
         }
+
+        public void UpdateDbSecretKey(PgpSecretKey key, string keyExportName)
+        {
+            Stream outFile = File.Create(keyExportName);
+            Stream outArmor = new ArmoredOutputStream(outFile);
+            string secKey = string.Empty;
+            key.Encode(outArmor);
+            outArmor.Close();
+            using (StreamReader rdr = new StreamReader(outFile)) {
+                rdr.BaseStream.Position = 0;
+                secKey = rdr.ReadToEnd();
+            }
+            KeyStores updKey = m_keyStoreDb.KeyStores.Find(key.KeyId);
+            updKey.ArmouredKeyFile = secKey;
+            m_keyStoreDb.SaveChanges();
+
+        }
+
     }
 }

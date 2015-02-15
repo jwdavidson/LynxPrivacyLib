@@ -8,7 +8,7 @@ using LynxPrivacyLib;
 namespace LynxPrivacyLibTests
 {
     [TestClass]
-    public class UnitTest_PassphraseChange
+    public class UnitTest_KeyRevocation
     {
         [ClassInitialize]
         public static void InitClass(TestContext ctx)
@@ -87,28 +87,21 @@ BQ7R6w==
             using (KeyStoreDB keyDB = new KeyStoreDB()) {
                 RetrievePgpKeys keySet = new RetrievePgpKeys("testuser1@example.com", true, keyDB);
                 keyId = keySet.SecretKey.KeyId;
-                originalArmour = keyDB.KeyStores.Find(keyId).ArmouredKeyFile;
-                PgpSecretKeyPassphraseChange.KeyChangePassphrase(keySet.SecretKey, new char[] { 't', 'e', 's', 't', 'u', 's', 'e', 'r' },
-                    new char[] { 't', 'e', 's', 't', 'u', 's', 'e', 'r', '1' }, keyDB, string.Empty);
+                PgpPublicKeyModifySignatures.AddSignature(keySet.SecretKey.PublicKey, keyDB, "", keySet.SecretKey,
+                    new char[] { 't', 'e', 's', 't', 'u', 's', 'e', 'r' }, SignatureOperation.RevokeKey, DateTime.MinValue);
             }
-            using (KeyStoreDB keyDbNew = new KeyStoreDB()) {
-                string newArmour = keyDbNew.KeyStores.Find(keyId).ArmouredKeyFile;
-                Assert.IsFalse(originalArmour.Equals(newArmour));
-            }
-            
         }
-
         [ClassCleanup]
         public static void ClassCleanup()
         {
-            File.Delete(Path.Combine(@"C:\Users\John\BcPGP\", "testuser1@example_com_secret.asc"));
-            using (KeyStoreDB keyDB = new KeyStoreDB()) {
-                KeyUsers user = keyDB.KeyUsers.Where(u => u.Email == "testuser1@example.com").FirstOrDefault();
-                KeyStores key = keyDB.KeyStores.Find(user.KeyStoreID);
-                keyDB.KeyUsers.Remove(user);
-                keyDB.KeyStores.Remove(key);
-                keyDB.SaveChanges();
-            }
+            //File.Delete(Path.Combine(@"C:\Users\John\BcPGP\", "testuser1@example_com_secret.asc"));
+            //using (KeyStoreDB keyDB = new KeyStoreDB()) {
+            //    KeyUsers user = keyDB.KeyUsers.Where(u => u.Email == "testuser1@example.com").FirstOrDefault();
+            //    KeyStores key = keyDB.KeyStores.Find(user.KeyStoreID);
+            //    keyDB.KeyUsers.Remove(user);
+            //    keyDB.KeyStores.Remove(key);
+            //    keyDB.SaveChanges();
+            //}
 
         }
     }

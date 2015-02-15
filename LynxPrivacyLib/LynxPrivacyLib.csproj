@@ -73,6 +73,7 @@
     <Compile Include="PgpKeyserverGetKey.cs" />
     <Compile Include="PgpKeyserverPostKey.cs" />
     <Compile Include="PgpKeyserverSearch.cs" />
+    <Compile Include="PgpPublicKeyModifySignatures.cs" />
     <Compile Include="PgpSecretKeyPassphraseChange.cs" />
     <Compile Include="RetrievePgpKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using Org.BouncyCastle.Bcpg;
+using Org.BouncyCastle.Bcpg.OpenPgp;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Crypto.Generators;
+using Org.BouncyCastle.Math;
+using Org.BouncyCastle.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LynxPrivacyLib;
 
 namespace LynxPrivacyLibTests
 {
     [TestClass]
-    public class UnitTest_PassphraseChange
+    public class UnitTest1
     {
-        [ClassInitialize]
-        public static void InitClass(TestContext ctx)
+        [TestMethod]
+        public void TestMethod1()
         {
             string secretKeyFile = @"-----BEGIN PGP PRIVATE KEY BLOCK-----
 Version: BCPG C# v1.7.4137.9688
@@ -72,44 +80,57 @@ BQ7R6w==
 -----END PGP PRIVATE KEY BLOCK-----";
 
             File.WriteAllText(Path.Combine(@"C:\Users\John\BcPGP", "testuser1@example_com_secret.asc"), secretKeyFile);
-            ImportKey impKey = new ImportKey();
-            using (KeyStoreDB keyDB = new KeyStoreDB()) {
-                int cnt = impKey.ImportSecretKey("testuser1@example_com_secret.asc", @"C:\Users\John\BcPGP", keyDB);
-            }
+            MemoryStream msSec = new MemoryStream(Encoding.UTF8.GetBytes(secretKeyFile));
+            PgpSecretKeyRing secRing = new PgpSecretKeyRing(PgpUtilities.GetDecoderStream(msSec));
+            char[] passPhrase = new char[] { 't', 'e', 's', 't', 'u', 's', 'e', 'r' };
+            PgpPublicKeyRing pubRing = new PgpPublicKeyRing(secRing.GetPublicKey().GetEncoded());
+
+            PgpPublicKeyRing newRing = new PgpPublicKeyRing(
+                    new MemoryStream(RevokePublicKey(secRing.GetSecretKey(), passPhrase, pubRing.GetPublicKey(), true)));
+
+            msSec.Close();
+            Assert.IsTrue(newRing.GetPublicKey().IsRevoked());
+
+            Stream fos = File.Create(@"C:\Users\John\BcPGP\RevokedKey.asc");
+            ArmoredOutputStream aOut = new ArmoredOutputStream(fos);
+            newRing.Encode(aOut);
+            aOut.Close();
+            fos.Close();
+
+            PgpSecretKey newSecret = PgpSecretKey.ReplacePublicKey(secRing.GetSecretKey(), newRing.GetPublicKey());
+            Stream foSec = File.Create(@"C:\Users\John\BcPGP\SecretRevokedKey.asc");
+            ArmoredOutputStream sOut = new ArmoredOutputStream(foSec);
+            newSecret.Encode(sOut);
+            sOut.Close();
+            foSec.Close();
+            Assert.IsTrue(newSecret.PublicKey.IsRevoked());
 
         }
 
-        [TestMethod]
-        public void TestMethod1()
+        private static byte[] RevokePublicKey(PgpSecretKey sKey, char[] sPass, PgpPublicKey keyToSign, bool armour)
         {
-            long keyId = 0;
-            string originalArmour = string.Empty;
-            using (KeyStoreDB keyDB = new KeyStoreDB()) {
-                RetrievePgpKeys keySet = new RetrievePgpKeys("testuser1@example.com", true, keyDB);
-                keyId = keySet.SecretKey.KeyId;
-                originalArmour = keyDB.KeyStores.Find(keyId).ArmouredKeyFile;
-                PgpSecretKeyPassphraseChange.KeyChangePassphrase(keySet.SecretKey, new char[] { 't', 'e', 's', 't', 'u', 's', 'e', 'r' },
-                    new char[] { 't', 'e', 's', 't', 'u', 's', 'e', 'r', '1' }, keyDB, string.Empty);
-            }
-            using (KeyStoreDB keyDbNew = new KeyStoreDB()) {
-                string newArmour = keyDbNew.KeyStores.Find(keyId).ArmouredKeyFile;
-                Assert.IsFalse(originalArmour.Equals(newArmour));
-            }
-            
-        }
+            Stream os = new MemoryStream();
+            if (armour)
+                os = new ArmoredOutputStream(os);
 
-        [ClassCleanup]
-        public static void ClassCleanup()
-        {
-            File.Delete(Path.Combine(@"C:\Users\John\BcPGP\", "testuser1@example_com_secret.asc"));
-            using (KeyStoreDB keyDB = new KeyStoreDB()) {
-                KeyUsers user = keyDB.KeyUsers.Where(u => u.Email == "testuser1@example.com").FirstOrDefault();
-                KeyStores key = keyDB.KeyStores.Find(user.KeyStoreID);
-                keyDB.KeyUsers.Remove(user);
-                keyDB.KeyStores.Remove(key);
-                keyDB.SaveChanges();
-            }
+            PgpPrivateKey privKey = sKey.ExtractPrivateKey(sPass);
+            PgpSignatureGenerator sGen = new PgpSignatureGenerator(sKey.PublicKey.Algorithm, HashAlgorithmTag.Sha1);
+            sGen.InitSign(PgpSignature.KeyRevocation, privKey);
+            BcpgOutputStream bOut = new BcpgOutputStream(os);
+            sGen.GenerateOnePassVersion(false).Encode(bOut);
+            PgpSignatureSubpacketGenerator spGen = new PgpSignatureSubpacketGenerator();
+            spGen.SetRevocable(false, true);
+            DateTime baseDate = new DateTime(1970, 1,1);
+            TimeSpan tSpan = DateTime.UtcNow - baseDate;
+            spGen.SetSignatureExpirationTime(false, tSpan.Seconds);
+            PgpSignatureSubpacketVector packetVector = spGen.Generate();
+            sGen.SetHashedSubpackets(packetVector);
+            bOut.Flush();
 
+            if (armour)
+                os.Close();
+
+            return PgpPublicKey.AddCertification(keyToSign, sGen.Generate()).GetEncoded();
         }
     }
 }

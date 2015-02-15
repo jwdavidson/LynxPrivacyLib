@@ -77,6 +77,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="UnitTest1.cs" />
+    <Compile Include="UnitTest_KeyRevocation.cs" />
     <Compile Include="UnitTest_PassphraseChange.cs" />
     <Compile Include="UnitTest_UpdateOwnerTrust.cs" />
     <Compile Include="UnitTest_KeyServerQuery.cs" />

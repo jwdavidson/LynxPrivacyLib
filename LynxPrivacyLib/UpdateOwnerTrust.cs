@@ -17,6 +17,14 @@ namespace LynxPrivacyLib
         static string secKeyLevel = "ultimate";
         public static bool Update(KeyStoreDB keyStoreDb, long keyId, string trust)
         {
+            if (keyStoreDb == null)
+                throw new ArgumentNullException("keyStoreDb");
+            if (keyId == 0)
+                throw new ArgumentOutOfRangeException("keyId");
+            if (string.IsNullOrEmpty(trust))
+                throw new ArgumentNullException("trust");
+
+
             KeyStores updRow = keyStoreDb.KeyStores.Find(keyId);
             switch (updRow.KeyType) {
                 case "Public":

@@ -41,14 +41,10 @@ namespace LynxPrivacyLib
                     string tempPath = Path.GetTempPath();
                     keyExportName = Path.Combine(tempPath, Guid.NewGuid().ToString() + ".tmppgp");
                 }
-                fileData = ExportSecretKey(newKey, keyExportName);
+                ExportKey expKey = new ExportKey(keyDb);
+                expKey.UpdateDbSecretKey(newKey, keyExportName);
                 if (useTemp) {
                     //File.Delete(keyExportName);
-                }
-                if (newKey.KeyId == key.KeyId) {
-                    KeyStores updKey = keyDb.KeyStores.Find(key.KeyId);
-                    updKey.ArmouredKeyFile = fileData;
-                    keyDb.SaveChanges();
                 }
             }
         }
@@ -62,18 +58,5 @@ namespace LynxPrivacyLib
             }
         }
 
-        private static string ExportSecretKey(PgpSecretKey key, string keyExportName)
-        {
-            Stream outFile = File.Create(keyExportName);
-            Stream outArmor = new ArmoredOutputStream(outFile);
-            string secKey = string.Empty;
-            key.Encode(outArmor);
-            outArmor.Close();
-            using (StreamReader rdr = new StreamReader(outFile)){
-                rdr.BaseStream.Position = 0;
-                secKey = rdr.ReadToEnd();
-            }
-            return secKey;
-        }
     }
 }
