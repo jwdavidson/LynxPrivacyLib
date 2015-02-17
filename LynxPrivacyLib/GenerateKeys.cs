@@ -42,7 +42,7 @@ namespace LynxPrivacyLib
             } else
                 throw new ArgumentException("userEmail not in correct format - User Name <email address>");
 
-            email = email.Replace(".", "_");
+            //email = email.Replace(".", "_");
 
             IAsymmetricCipherKeyPairGenerator kpg = GeneratorUtilities.GetKeyPairGenerator("RSA");
 
@@ -53,8 +53,8 @@ namespace LynxPrivacyLib
 
             Stream out1, out2;
 
-            out1 = File.Create(Path.Combine(keyStorePath, email + "_secret.asc"));
-            out2 = File.Create(Path.Combine(keyStorePath, email + "_public.asc"));
+            out1 = File.Create(Path.Combine(keyStorePath, email + ".secret.asc"));
+            out2 = File.Create(Path.Combine(keyStorePath, email + ".public.asc"));
 
             ExportKeyPair(out1, out2, kp.Public, kp.Private, userEmail, password, true);
 

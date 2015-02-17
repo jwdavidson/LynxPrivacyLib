@@ -343,6 +343,7 @@
             // 
             this.txtSecretKeyname.Location = new System.Drawing.Point(129, 186);
             this.txtSecretKeyname.Name = "txtSecretKeyname";
+            this.txtSecretKeyname.ReadOnly = true;
             this.txtSecretKeyname.Size = new System.Drawing.Size(362, 23);
             this.txtSecretKeyname.TabIndex = 27;
             // 
@@ -353,12 +354,13 @@
             this.lblPublicKeyname.Name = "lblPublicKeyname";
             this.lblPublicKeyname.Size = new System.Drawing.Size(113, 15);
             this.lblPublicKeyname.TabIndex = 26;
-            this.lblPublicKeyname.Text = "Publik Key Filename";
+            this.lblPublicKeyname.Text = "Public Key Filename";
             // 
             // txtPublicKeyname
             // 
             this.txtPublicKeyname.Location = new System.Drawing.Point(129, 157);
             this.txtPublicKeyname.Name = "txtPublicKeyname";
+            this.txtPublicKeyname.ReadOnly = true;
             this.txtPublicKeyname.Size = new System.Drawing.Size(362, 23);
             this.txtPublicKeyname.TabIndex = 25;
             // 

@@ -213,7 +213,7 @@
             this.lblPublicKeyname.Name = "lblPublicKeyname";
             this.lblPublicKeyname.Size = new System.Drawing.Size(102, 13);
             this.lblPublicKeyname.TabIndex = 17;
-            this.lblPublicKeyname.Text = "Publik Key Filename";
+            this.lblPublicKeyname.Text = "Public Key Filename";
             // 
             // txtPublicKeyname
             // 
