@@ -245,7 +245,7 @@
             this.txtPassphrase2.Name = "txtPassphrase2";
             this.txtPassphrase2.PasswordChar = '•';
             this.txtPassphrase2.Size = new System.Drawing.Size(176, 23);
-            this.txtPassphrase2.TabIndex = 26;
+            this.txtPassphrase2.TabIndex = 24;
             this.txtPassphrase2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassphrase2_KeyPress);
             this.txtPassphrase2.Leave += new System.EventHandler(this.txtPassphrase2_Leave);
             // 
@@ -385,10 +385,13 @@
             // 
             // progressBar1
             // 
+            this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.progressBar1.ForeColor = System.Drawing.Color.Green;
             this.progressBar1.Location = new System.Drawing.Point(17, 259);
+            this.progressBar1.MarqueeAnimationSpeed = 20;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(474, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 22;
             // 
             // lblFolder

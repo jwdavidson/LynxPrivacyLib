@@ -23,7 +23,7 @@ namespace LynxPrivacyLib
 
 
 
-        public static void GenerateKeyRing(string userEmail, char[] password, string keyStorePath)
+        public static async Task<bool> GenerateKeyRing(string userEmail, char[] password, string keyStorePath)
         {
 
             if (string.IsNullOrEmpty(userEmail))
@@ -34,7 +34,7 @@ namespace LynxPrivacyLib
                 throw new ArgumentNullException("keyStorePath");
 
             string email = null;
-
+            
             Regex regex = new Regex(@"<(?<email>.*)>");
             Match match = regex.Match(userEmail);
             if (match.Success) {
@@ -45,7 +45,7 @@ namespace LynxPrivacyLib
             //email = email.Replace(".", "_");
 
             IAsymmetricCipherKeyPairGenerator kpg = GeneratorUtilities.GetKeyPairGenerator("RSA");
-
+            
             kpg.Init(new RsaKeyGenerationParameters(
                 BigInteger.ValueOf(P_EXPONENT), new SecureRandom(), KEYLENGTH, 25));
 
@@ -56,10 +56,12 @@ namespace LynxPrivacyLib
             out1 = File.Create(Path.Combine(keyStorePath, email + ".secret.asc"));
             out2 = File.Create(Path.Combine(keyStorePath, email + ".public.asc"));
 
-            ExportKeyPair(out1, out2, kp.Public, kp.Private, userEmail, password, true);
+            await Task.Run(() => ExportKeyPair(out1, out2, kp.Public, kp.Private, userEmail, password, true));
 
             out1.Close();
             out2.Close();
+
+            return true;
 
         }
         private static void ExportKeyPair(

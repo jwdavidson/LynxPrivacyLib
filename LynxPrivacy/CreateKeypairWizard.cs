@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using LynxPrivacyLib;
 
@@ -13,12 +14,15 @@ namespace LynxPrivacy
         public CreateKeypairWizard()
         {
             InitializeComponent();
+            progressBar1.Visible = false;
+
             textBox1.Text = buildWizardDescription();
             textBox1.SelectionStart = 0;
 
             txtStep2Desc.Text = buildStep2Desc();
             txtStep2Desc.SelectionStart = 0;
             wzrdCreateKpUserData.Commit += new EventHandler<AeroWizard.WizardPageConfirmEventArgs>(wzrdCreateKpUserData_Commit);
+            wzrdCreateKeyPair.Cancelling += wzrdCreateKeyPair_Cancelling;
             pnlFirstName.Visible = false;
             pnlSurname.Visible = false;
             pnlEmail.Visible = false;
@@ -39,12 +43,32 @@ namespace LynxPrivacy
             m_Validations = new Validations();
         }
 
-        void wzrdCreateKpFinish_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
+        void wzrdCreateKeyPair_Cancelling(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.Close();
+        }
+
+
+
+         async void wzrdCreateKpFinish_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
+        {
+            progressBar1.Visible = true;
+            await Task.Run(() => wzrdCreateKpFinish_CommitAsync(sender, e));
+            progressBar1.Visible = false;
+            wzrdCreateKeyPair.CancelButtonText = "Close";
+        }
+
+        async Task wzrdCreateKpFinish_CommitAsync(object sender, AeroWizard.WizardPageConfirmEventArgs e)
         {
             if (string.IsNullOrEmpty(txtFolder.Text))
                 txtFolder.Text = AppDomain.CurrentDomain.BaseDirectory;
-            LynxPrivacyLib.GenerateKeys.GenerateKeyRing(txtFirstName.Text + " " + txtSurname.Text + " <" + txtEMail.Text + ">",
+            bool runOk = await LynxPrivacyLib.GenerateKeys.GenerateKeyRing(txtFirstName.Text + " " + txtSurname.Text + " <" + txtEMail.Text + ">",
                 m_passphrase1, txtFolder.Text);
+            ImportKey impKey = new ImportKey();
+            using (KeyStoreDB keyDB = new KeyStoreDB()) {
+                //int cntP = impKey.ImportPublicKey(txtPublicKeyname.Text, txtFolder.Text, keyDB);
+                int cntS = impKey.ImportSecretKey(txtSecretKeyname.Text, txtFolder.Text, keyDB);
+            }
         }
 
         void wzrdCreateKpPassphrase_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)
@@ -264,10 +288,13 @@ namespace LynxPrivacy
         private string buildStep4Desc()
         {
             StringBuilder strDesc = new StringBuilder();
-            strDesc.Append("The pass phrase is the lock on your Private Key. The colour indicator is an attempt to show you the quality of the lock. ");
-            strDesc.Append("Both pass phrases must be indentical before the process will allow you to move to the next step. ");
-            strDesc.Append("If you forget this pass phrase it will be impossible to decrypt any content that was encrypted for that Private Key, ");
-            strDesc.Append("and you will not be able to reset the pass phrase to a new value without the original value. ");
+            strDesc.Append("The generation of the 2 key files takes a long time, 3 to 5 minutes at a minimum. It may be more. ");
+            strDesc.Append("The progress bar that is displayed while working will disappear when the process has completed. ");
+            strDesc.Append("Fortunately, this is not a process that is run frequently. ");
+            strDesc.AppendLine("");
+            strDesc.AppendLine("");
+            strDesc.Append("The directory shown is the default location for storing the keys, but you may change it to any folder that you want. ");
+            strDesc.Append("The key names are not changable, but are shown to you so that you may copy them as necessary.");
             strDesc.AppendLine("");
 
 
