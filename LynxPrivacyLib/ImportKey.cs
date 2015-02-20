@@ -46,11 +46,18 @@ namespace LynxPrivacyLib
                         string comment2 = match.Groups["comment2"] != null ? match.Groups["comment2"].Value : string.Empty;
                         if (!string.IsNullOrEmpty(comment2))
                             comment1 += " " + comment2;
+                        KeyUsers userExists = keyStoreDB.KeyUsers.Find(pubKey.KeyId);
+                        if (userExists != null) {
+                            keyStoreDB.KeyUsers.Remove(userExists);
+                            keyStoreDB.SaveChanges();
+                        }
                         keyStoreDB.KeyUsers.Add(new KeyUsers() {
                             KeyStoreID = pubKey.KeyId,
                             UserName = match.Groups["user"] != null ? match.Groups["user"].Value : string.Empty,
                             Email = match.Groups["email"] != null ? match.Groups["email"].Value : string.Empty,
-                            Comment = comment1
+                            Comment = comment1,
+                            EncryptionType = ((PublicKeyAlgorithmTag)pubKey.Algorithm).ToString(),
+                            KeySize = pubKey.BitStrength
                         });
                     }
                 }
@@ -76,7 +83,7 @@ namespace LynxPrivacyLib
             string stringFileContent = File.ReadAllText(keyPath);
             PgpSecretKey secKey = ReadSecretKey(keyPath, true);
 
-            bool removed = RemovePublicKeyForSecretKey(secKey.KeyId, keyStoreDB);
+            //bool removed = RemovePublicKeyForSecretKey(secKey.KeyId, keyStoreDB);
 
             try {
                 keyStoreDB.KeyStores.Add(new KeyStores() {
@@ -99,11 +106,18 @@ namespace LynxPrivacyLib
                         string comment2 = match.Groups["comment2"] != null ? match.Groups["comment2"].Value : string.Empty;
                         if (!string.IsNullOrEmpty(comment2))
                             comment1 += " " + comment2;
+                        KeyUsers userExists = keyStoreDB.KeyUsers.Find(secKey.KeyId);
+                        if (userExists != null) {
+                            keyStoreDB.KeyUsers.Remove(userExists);
+                            keyStoreDB.SaveChanges();
+                        }
                         keyStoreDB.KeyUsers.Add(new KeyUsers() {
                             KeyStoreID = secKey.KeyId,
                             UserName = match.Groups["user"] != null ? match.Groups["user"].Value : string.Empty,
                             Email = match.Groups["email"] != null ? match.Groups["email"].Value : string.Empty,
-                            Comment = comment1
+                            Comment = comment1,
+                            EncryptionType = ((PublicKeyAlgorithmTag)secKey.PublicKey.Algorithm).ToString(),
+                            KeySize = secKey.PublicKey.BitStrength
                         });
                     }
                 }

@@ -4,6 +4,7 @@ namespace LynxPrivacyLib
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity;
     using System.Data.Entity.Spatial;
 
     public partial class KeyUsers
@@ -25,6 +26,18 @@ namespace LynxPrivacyLib
         [StringLength(250)]
         public string Comment { get; set; }
 
+        [StringLength(20)]
+        public string EncryptionType { get; set; }
+
+        public int KeySize { get; set; }
+
+        [StringLength(20)]
+        public string HashFunction { get; set; }
+
+        [StringLength(20)]
+        public string CompressionType { get; set; }
+
         public virtual KeyStores KeyStores { get; set; }
+
     }
 }
