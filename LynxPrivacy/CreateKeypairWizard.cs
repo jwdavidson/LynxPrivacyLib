@@ -14,6 +14,7 @@ namespace LynxPrivacy
         public CreateKeypairWizard()
         {
             InitializeComponent();
+            
             progressBar1.Visible = false;
 
             textBox1.Text = buildWizardDescription();
@@ -223,6 +224,16 @@ namespace LynxPrivacy
             }
         }
 
+        private void btnFolder_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog1.SelectedPath = AppDomain.CurrentDomain.BaseDirectory;
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+                txtFolder.Text = folderBrowserDialog1.SelectedPath;
+        }
+
+
         private string buildWizardDescription()
         {
             StringBuilder strDesc = new StringBuilder();
@@ -289,6 +300,7 @@ namespace LynxPrivacy
         {
             StringBuilder strDesc = new StringBuilder();
             strDesc.Append("The generation of the 2 key files takes a long time, 3 to 5 minutes at a minimum. It may be more. ");
+            strDesc.Append("The length of time is necessary to create keys that 4096-bits in length. These should be secure for about 7 - 10 years. ");
             strDesc.Append("The progress bar that is displayed while working will disappear when the process has completed. ");
             strDesc.Append("Fortunately, this is not a process that is run frequently. ");
             strDesc.AppendLine("");
@@ -305,6 +317,18 @@ namespace LynxPrivacy
         {
             txtPublicKeyname.Text = txtEMail.Text + ".public.asc";
             txtSecretKeyname.Text = txtEMail.Text + ".secret.asc";
+        }
+
+        private void txtFolder_Enter(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFolder.Text))
+            txtFolder.Text = AppDomain.CurrentDomain.BaseDirectory;
+        }
+
+        private void txtFolder_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtFolder.Text))
+                txtFolder.Text = AppDomain.CurrentDomain.BaseDirectory;
         }
     }
 }

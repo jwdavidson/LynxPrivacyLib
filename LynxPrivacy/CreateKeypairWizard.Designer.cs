@@ -62,6 +62,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblFolder = new System.Windows.Forms.Label();
             this.txtFolder = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.wzrdCreateKeyPair)).BeginInit();
             this.wzrdCreateKpDesc.SuspendLayout();
             this.wzrdCreateKpUserData.SuspendLayout();
@@ -409,6 +410,8 @@
             this.txtFolder.Name = "txtFolder";
             this.txtFolder.Size = new System.Drawing.Size(362, 23);
             this.txtFolder.TabIndex = 20;
+            this.txtFolder.Enter += new System.EventHandler(this.txtFolder_Enter);
+            this.txtFolder.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // CreateKeypairWizard
             // 
@@ -471,5 +474,6 @@
         private System.Windows.Forms.Label lblFolder;
         private System.Windows.Forms.TextBox txtFolder;
         private System.Windows.Forms.TextBox txtStep4Desc;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }

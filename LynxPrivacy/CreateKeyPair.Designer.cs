@@ -41,7 +41,7 @@
             this.lblPassphrase2 = new System.Windows.Forms.Label();
             this.txtPassphrase2 = new System.Windows.Forms.TextBox();
             this.lblFolder = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFolder = new System.Windows.Forms.TextBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblProgressBar = new System.Windows.Forms.Label();
@@ -53,6 +53,11 @@
             this.btnCreateKeypair = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pnlQuality = new System.Windows.Forms.Panel();
+            this.pnlSurname = new System.Windows.Forms.Panel();
+            this.pnlFirstname = new System.Windows.Forms.Panel();
+            this.pnlPP1 = new System.Windows.Forms.Panel();
+            this.pnlPP2 = new System.Windows.Forms.Panel();
+            this.pnlEmail = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtFirstName
@@ -61,6 +66,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(176, 20);
             this.txtFirstName.TabIndex = 0;
+            this.txtFirstName.Leave += new System.EventHandler(this.txtFirstName_Leave);
             // 
             // lblFirstName
             // 
@@ -86,6 +92,7 @@
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(176, 20);
             this.txtSurname.TabIndex = 2;
+            this.txtSurname.Leave += new System.EventHandler(this.txtSurname_Leave);
             // 
             // lblEmail
             // 
@@ -102,6 +109,7 @@
             this.txtEMail.Name = "txtEMail";
             this.txtEMail.Size = new System.Drawing.Size(367, 20);
             this.txtEMail.TabIndex = 4;
+            this.txtEMail.Leave += new System.EventHandler(this.txtEMail_Leave);
             // 
             // lblPassPhrase1
             // 
@@ -116,9 +124,10 @@
             // 
             this.txtPassphrase1.Location = new System.Drawing.Point(160, 131);
             this.txtPassphrase1.Name = "txtPassphrase1";
+            this.txtPassphrase1.PasswordChar = '•';
             this.txtPassphrase1.Size = new System.Drawing.Size(176, 20);
             this.txtPassphrase1.TabIndex = 6;
-            this.txtPassphrase1.UseSystemPasswordChar = true;
+            this.txtPassphrase1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassphrase1_KeyPress);
             // 
             // checkBox1
             // 
@@ -129,6 +138,7 @@
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "Unhide Passphrase Input";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // lblPassphrase2
             // 
@@ -143,9 +153,11 @@
             // 
             this.txtPassphrase2.Location = new System.Drawing.Point(160, 164);
             this.txtPassphrase2.Name = "txtPassphrase2";
+            this.txtPassphrase2.PasswordChar = '•';
             this.txtPassphrase2.Size = new System.Drawing.Size(176, 20);
-            this.txtPassphrase2.TabIndex = 9;
-            this.txtPassphrase2.UseSystemPasswordChar = true;
+            this.txtPassphrase2.TabIndex = 7;
+            this.txtPassphrase2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassphrase2_KeyPress);
+            this.txtPassphrase2.Leave += new System.EventHandler(this.txtPassphrase2_Leave);
             // 
             // lblFolder
             // 
@@ -156,19 +168,24 @@
             this.lblFolder.TabIndex = 12;
             this.lblFolder.Text = "Select Folder";
             // 
-            // textBox1
+            // txtFolder
             // 
-            this.textBox1.Location = new System.Drawing.Point(160, 226);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(367, 20);
-            this.textBox1.TabIndex = 11;
+            this.txtFolder.Location = new System.Drawing.Point(160, 226);
+            this.txtFolder.Name = "txtFolder";
+            this.txtFolder.Size = new System.Drawing.Size(367, 20);
+            this.txtFolder.TabIndex = 11;
+            this.txtFolder.Enter += new System.EventHandler(this.txtFolder_Enter);
+            this.txtFolder.Leave += new System.EventHandler(this.txtFolder_Leave);
             // 
             // progressBar1
             // 
+            this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.progressBar1.ForeColor = System.Drawing.Color.Green;
             this.progressBar1.Location = new System.Drawing.Point(53, 359);
+            this.progressBar1.MarqueeAnimationSpeed = 30;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(474, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar1.TabIndex = 13;
             // 
             // lblProgressBar
@@ -189,6 +206,7 @@
             this.btnFolder.TabIndex = 15;
             this.btnFolder.Text = "Browse Folders ...";
             this.btnFolder.UseVisualStyleBackColor = true;
+            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
             // lblSecretKeyname
             // 
@@ -203,6 +221,7 @@
             // 
             this.txtSecretKeyname.Location = new System.Drawing.Point(160, 286);
             this.txtSecretKeyname.Name = "txtSecretKeyname";
+            this.txtSecretKeyname.ReadOnly = true;
             this.txtSecretKeyname.Size = new System.Drawing.Size(367, 20);
             this.txtSecretKeyname.TabIndex = 18;
             // 
@@ -219,6 +238,7 @@
             // 
             this.txtPublicKeyname.Location = new System.Drawing.Point(160, 257);
             this.txtPublicKeyname.Name = "txtPublicKeyname";
+            this.txtPublicKeyname.ReadOnly = true;
             this.txtPublicKeyname.Size = new System.Drawing.Size(367, 20);
             this.txtPublicKeyname.TabIndex = 16;
             // 
@@ -231,9 +251,11 @@
             this.btnCreateKeypair.TabIndex = 20;
             this.btnCreateKeypair.Text = "Create Keypair";
             this.btnCreateKeypair.UseVisualStyleBackColor = true;
+            this.btnCreateKeypair.Click += new System.EventHandler(this.btnCreateKepair_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.CausesValidation = false;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Location = new System.Drawing.Point(546, 359);
             this.btnCancel.Name = "btnCancel";
@@ -241,6 +263,7 @@
             this.btnCancel.TabIndex = 21;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // pnlQuality
             // 
@@ -249,6 +272,46 @@
             this.pnlQuality.Name = "pnlQuality";
             this.pnlQuality.Size = new System.Drawing.Size(142, 18);
             this.pnlQuality.TabIndex = 22;
+            // 
+            // pnlSurname
+            // 
+            this.pnlSurname.BackColor = System.Drawing.Color.Red;
+            this.pnlSurname.Location = new System.Drawing.Point(158, 66);
+            this.pnlSurname.Name = "pnlSurname";
+            this.pnlSurname.Size = new System.Drawing.Size(180, 25);
+            this.pnlSurname.TabIndex = 23;
+            // 
+            // pnlFirstname
+            // 
+            this.pnlFirstname.BackColor = System.Drawing.Color.Red;
+            this.pnlFirstname.Location = new System.Drawing.Point(158, 38);
+            this.pnlFirstname.Name = "pnlFirstname";
+            this.pnlFirstname.Size = new System.Drawing.Size(180, 25);
+            this.pnlFirstname.TabIndex = 24;
+            // 
+            // pnlPP1
+            // 
+            this.pnlPP1.BackColor = System.Drawing.Color.Red;
+            this.pnlPP1.Location = new System.Drawing.Point(158, 127);
+            this.pnlPP1.Name = "pnlPP1";
+            this.pnlPP1.Size = new System.Drawing.Size(180, 27);
+            this.pnlPP1.TabIndex = 24;
+            // 
+            // pnlPP2
+            // 
+            this.pnlPP2.BackColor = System.Drawing.Color.Red;
+            this.pnlPP2.Location = new System.Drawing.Point(158, 161);
+            this.pnlPP2.Name = "pnlPP2";
+            this.pnlPP2.Size = new System.Drawing.Size(180, 27);
+            this.pnlPP2.TabIndex = 24;
+            // 
+            // pnlEmail
+            // 
+            this.pnlEmail.BackColor = System.Drawing.Color.Red;
+            this.pnlEmail.Location = new System.Drawing.Point(158, 96);
+            this.pnlEmail.Name = "pnlEmail";
+            this.pnlEmail.Size = new System.Drawing.Size(371, 25);
+            this.pnlEmail.TabIndex = 24;
             // 
             // CreateKeyPair
             // 
@@ -266,7 +329,7 @@
             this.Controls.Add(this.lblProgressBar);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.lblFolder);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFolder);
             this.Controls.Add(this.lblPassphrase2);
             this.Controls.Add(this.txtPassphrase2);
             this.Controls.Add(this.checkBox1);
@@ -278,6 +341,11 @@
             this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.txtFirstName);
+            this.Controls.Add(this.pnlPP2);
+            this.Controls.Add(this.pnlPP1);
+            this.Controls.Add(this.pnlEmail);
+            this.Controls.Add(this.pnlSurname);
+            this.Controls.Add(this.pnlFirstname);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "CreateKeyPair";
             this.Text = "Create Key Pair";
@@ -301,7 +369,7 @@
         private System.Windows.Forms.Label lblPassphrase2;
         private System.Windows.Forms.TextBox txtPassphrase2;
         private System.Windows.Forms.Label lblFolder;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFolder;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblProgressBar;
@@ -313,5 +381,10 @@
         private System.Windows.Forms.Button btnCreateKeypair;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel pnlQuality;
+        private System.Windows.Forms.Panel pnlSurname;
+        private System.Windows.Forms.Panel pnlFirstname;
+        private System.Windows.Forms.Panel pnlPP1;
+        private System.Windows.Forms.Panel pnlPP2;
+        private System.Windows.Forms.Panel pnlEmail;
     }
 }
