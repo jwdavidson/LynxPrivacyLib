@@ -75,8 +75,10 @@
     <Compile Include="PgpKeyserverSearch.cs" />
     <Compile Include="PgpPublicKeyModifySignatures.cs" />
     <Compile Include="PgpSecretKeyPassphraseChange.cs" />
+    <Compile Include="KeyView.cs" />
     <Compile Include="RetrievePgpKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortableBindingList.cs" />
     <Compile Include="UpdateOwnerTrust.cs" />
   </ItemGroup>
   <ItemGroup>

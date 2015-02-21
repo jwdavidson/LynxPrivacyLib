@@ -17,6 +17,8 @@ namespace LynxPrivacy
         public LynxPrivacyTopMDI()
         {
             InitializeComponent();
+            this.Width = 1118;
+            this.Height = 664;
             m_frmDirector = new Director();
             m_frmDirector.MdiParent = this;
             m_frmDirector.Width = this.Width - 20;

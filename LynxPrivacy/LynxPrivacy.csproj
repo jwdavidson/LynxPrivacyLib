@@ -96,6 +96,10 @@
     <Compile Include="Director.Designer.cs">
       <DependentUpon>Director.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalKeyStore.cs" />
+    <Compile Include="LocalKeyStore.Designer.cs">
+      <DependentUpon>LocalKeyStore.cs</DependentUpon>
+    </Compile>
     <Compile Include="LynxPrivacyTopMDI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +121,9 @@
     <EmbeddedResource Include="Director.resx">
       <DependentUpon>Director.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LocalKeyStore.resx">
+      <DependentUpon>LocalKeyStore.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LynxPrivacyTopMDI.resx">
       <DependentUpon>LynxPrivacyTopMDI.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +138,8 @@
     </Compile>
     <None Include="AppData\KeyStore.db" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\LynxPrivacyLib.KeyUsers.datasource" />
+    <None Include="Properties\DataSources\LynxPrivacyLib.KeyView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

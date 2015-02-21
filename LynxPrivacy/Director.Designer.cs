@@ -76,6 +76,7 @@
             this.btnLocalKeystore.TabIndex = 3;
             this.btnLocalKeystore.Text = "Form for Local Keystore Access";
             this.btnLocalKeystore.UseVisualStyleBackColor = true;
+            this.btnLocalKeystore.Click += new System.EventHandler(this.btnLocalKeystore_Click);
             // 
             // btnEncryptFile
             // 

@@ -48,5 +48,18 @@ namespace LynxPrivacy
             m_useWizards = chkUseWizards.Checked;
         }
 
+        private void btnLocalKeystore_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() == typeof(frmLocalKeyStore)) {
+                    form.Activate();
+                    return;
+                }
+            }
+            frmLocalKeyStore frmLocalKeyStore = new frmLocalKeyStore();
+            frmLocalKeyStore.MdiParent = this.MdiParent;
+            frmLocalKeyStore.Show();
+        }
+
     }
 }
