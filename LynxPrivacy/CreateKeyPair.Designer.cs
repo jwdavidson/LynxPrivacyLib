@@ -349,6 +349,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "CreateKeyPair";
             this.Text = "Create Key Pair";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateKeyPair_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

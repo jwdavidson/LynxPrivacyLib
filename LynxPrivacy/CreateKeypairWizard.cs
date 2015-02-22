@@ -14,6 +14,7 @@ namespace LynxPrivacy
         public CreateKeypairWizard()
         {
             InitializeComponent();
+            Application.ThreadException += Application_ThreadException;
             
             progressBar1.Visible = false;
 
@@ -42,6 +43,13 @@ namespace LynxPrivacy
             txtFolder.Text = AppDomain.CurrentDomain.BaseDirectory;
 
             m_Validations = new Validations();
+        }
+
+        void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(e.Exception.Message, "Error Detected", MessageBoxButtons.RetryCancel);
+            if (result == DialogResult.Cancel)
+                this.Close();
         }
 
         void wzrdCreateKeyPair_Cancelling(object sender, System.ComponentModel.CancelEventArgs e)
@@ -327,6 +335,11 @@ namespace LynxPrivacy
         {
             if (string.IsNullOrEmpty(txtFolder.Text))
                 txtFolder.Text = AppDomain.CurrentDomain.BaseDirectory;
+        }
+
+        private void CreateKeypairWizard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.ThreadException -= Application_ThreadException;
         }
     }
 }

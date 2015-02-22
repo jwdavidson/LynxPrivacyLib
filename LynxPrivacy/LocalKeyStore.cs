@@ -14,11 +14,21 @@ namespace LynxPrivacy
 {
     public partial class LocalKeyStore : Form
     {
+
+        private bool m_secretKeyGridLoaded;
         public LocalKeyStore()
         {
             InitializeComponent();
-            
+            Application.ThreadException += Application_ThreadException;
+            m_secretKeyGridLoaded = false;
 
+        }
+
+        void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            DialogResult result = MessageBox.Show(e.Exception.Message, "Error Detected", MessageBoxButtons.RetryCancel);
+            if (result == DialogResult.Cancel)
+                this.Close();
         }
 
         private void LocalKeyStore_Load(object sender, EventArgs e)
@@ -34,7 +44,7 @@ namespace LynxPrivacy
             Cursor.Current = Cursors.Default;
         }
 
-        private void frmLocalKeyStore_Resize(object sender, EventArgs e)
+        private void LocalKeyStore_Resize(object sender, EventArgs e)
         {
             tabControl1.Width = this.Width - 34;
             tabControl1.Height = this.Height - 54;
@@ -83,6 +93,32 @@ namespace LynxPrivacy
             foreach (DataGridViewColumn column in dgvPublicKeys.Columns) {
                 column.SortMode = DataGridViewColumnSortMode.Programmatic;
             }
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if (e.TabPage.Text == "Secret Keys" && (!m_secretKeyGridLoaded)) {
+                Cursor.Current = Cursors.WaitCursor;
+                SortableBindingList<KeyView> boundKeyView1 = new SortableBindingList<KeyView>();
+                List<KeyStores> secKeyStores = Global.keyDb.KeyStores.Where(k => k.KeyType == "Secret").ToList();
+                foreach (KeyStores key in secKeyStores) {
+                    boundKeyView1.Add(new KeyView(key, key.KeyUsers.First().KeyUserID));
+                }
+                dgvSecretKeys.DataSource = boundKeyView1;
+                dgvSecretKeys.ContextMenuStrip = contextMenuStrip1;
+                Cursor.Current = Cursors.Default;
+                m_secretKeyGridLoaded = true;
+            }
+        }
+
+        private void btnSecSetLocalTrust_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void LocalKeyStore_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.ThreadException -= Application_ThreadException;
         }
     }
 }

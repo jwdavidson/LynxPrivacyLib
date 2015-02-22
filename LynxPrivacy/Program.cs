@@ -15,9 +15,21 @@ namespace LynxPrivacy
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LynxPrivacyTopMDI());
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            try {
+                Exception ex = (Exception)e.ExceptionObject;
+                DialogResult result = MessageBox.Show(ex.Message + ex.StackTrace, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            finally {
+                Application.Exit();
+            }
         }
     }
 

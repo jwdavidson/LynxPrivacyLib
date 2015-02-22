@@ -424,6 +424,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "CreateKeypairWizard";
             this.Text = "Create PGP Key Pair Wizard";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateKeypairWizard_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.wzrdCreateKeyPair)).EndInit();
             this.wzrdCreateKpDesc.ResumeLayout(false);
             this.wzrdCreateKpDesc.PerformLayout();
