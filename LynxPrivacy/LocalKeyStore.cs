@@ -12,9 +12,9 @@ using LynxPrivacyLib;
 
 namespace LynxPrivacy
 {
-    public partial class frmLocalKeyStore : Form
+    public partial class LocalKeyStore : Form
     {
-        public frmLocalKeyStore()
+        public LocalKeyStore()
         {
             InitializeComponent();
             
@@ -24,12 +24,10 @@ namespace LynxPrivacy
         private void LocalKeyStore_Load(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-                SortableBindingList<KeyView> boundKeyView = new SortableBindingList<KeyView>();
-            using (KeyStoreDB keyDb = new KeyStoreDB()) {
-                List<KeyStores> pubKeyStores = keyDb.KeyStores.Where(k => k.KeyType == "Public").ToList();
-                foreach (KeyStores key in pubKeyStores) {
-                    boundKeyView.Add(new KeyView(key, key.KeyUsers.First().KeyUserID));
-                }
+            SortableBindingList<KeyView> boundKeyView = new SortableBindingList<KeyView>();
+            List<KeyStores> pubKeyStores = Global.keyDb.KeyStores.Where(k => k.KeyType == "Public").ToList();
+            foreach (KeyStores key in pubKeyStores) {
+                boundKeyView.Add(new KeyView(key, key.KeyUsers.First().KeyUserID));
             }
             keyViewBindingSource.DataSource = boundKeyView;
             dgvPublicKeys.ContextMenuStrip = contextMenuStrip1;

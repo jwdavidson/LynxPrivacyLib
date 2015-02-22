@@ -66,10 +66,8 @@ namespace LynxPrivacy
             bool runOk = await LynxPrivacyLib.GenerateKeys.GenerateKeyRing(txtFirstName.Text + " " + txtSurname.Text + " <" + txtEMail.Text + ">",
                 m_passphrase1, txtFolder.Text);
             ImportKey impKey = new ImportKey();
-            using (KeyStoreDB keyDB = new KeyStoreDB()) {
-                int cntP = impKey.ImportPublicKey(txtPublicKeyname.Text, txtFolder.Text, keyDB);
-                int cntS = impKey.ImportSecretKey(txtSecretKeyname.Text, txtFolder.Text, keyDB);
-            }
+            int cntP = impKey.ImportPublicKey(txtPublicKeyname.Text, txtFolder.Text, Global.keyDb);
+            int cntS = impKey.ImportSecretKey(txtSecretKeyname.Text, txtFolder.Text, Global.keyDb);
         }
 
         void wzrdCreateKpPassphrase_Commit(object sender, AeroWizard.WizardPageConfirmEventArgs e)

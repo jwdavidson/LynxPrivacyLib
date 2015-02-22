@@ -96,6 +96,7 @@
             this.MaximumSize = new System.Drawing.Size(1600, 1000);
             this.Name = "LynxPrivacyTopMDI";
             this.Text = "Lynx Privacy";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LynxPrivacyTopMDI_FormClosing);
             this.Resize += new System.EventHandler(this.LynxPrivacyTopMDI_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace LynxPrivacy
 {
-    partial class frmLocalKeyStore
+    partial class LocalKeyStore
     {
         /// <summary>
         /// Required designer variable.

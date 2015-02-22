@@ -51,12 +51,12 @@ namespace LynxPrivacy
         private void btnLocalKeystore_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms) {
-                if (form.GetType() == typeof(frmLocalKeyStore)) {
+                if (form.GetType() == typeof(LocalKeyStore)) {
                     form.Activate();
                     return;
                 }
             }
-            frmLocalKeyStore frmLocalKeyStore = new frmLocalKeyStore();
+            LocalKeyStore frmLocalKeyStore = new LocalKeyStore();
             frmLocalKeyStore.MdiParent = this.MdiParent;
             frmLocalKeyStore.Show();
         }

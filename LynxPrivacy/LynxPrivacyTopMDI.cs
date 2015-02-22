@@ -24,6 +24,8 @@ namespace LynxPrivacy
             m_frmDirector.Width = this.Width - 20;
             m_frmDirector.Height = this.Height - 67;
             m_frmDirector.Show();
+            Global.keyDb = new LynxPrivacyLib.KeyStoreDB();
+            Global.keyDb.Database.Connection.Open();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,6 +45,12 @@ namespace LynxPrivacy
         {
             m_frmDirector.Width = this.Width - 20;
             m_frmDirector.Height = this.Height - 67;
+        }
+
+        private void LynxPrivacyTopMDI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Global.keyDb.Database.Connection.Close();
+            Global.keyDb = null;
         }
 
        
