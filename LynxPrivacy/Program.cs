@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LynxPrivacyLib;
 
+[assembly: log4net.Config.XmlConfigurator(ConfigFile="Log4Net.config", Watch = true)]
+
 namespace LynxPrivacy
 {
     static class Program
@@ -21,10 +23,12 @@ namespace LynxPrivacy
             Application.Run(new LynxPrivacyTopMDI());
         }
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             try {
                 Exception ex = (Exception)e.ExceptionObject;
+                log.Fatal("Unhandled Exception caught.", ex);
                 DialogResult result = MessageBox.Show(ex.Message + ex.StackTrace, "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             finally {

@@ -14,6 +14,7 @@ namespace LynxPrivacy
     public partial class CreateKeyPair : Form
     {
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private char[] m_passphrase1;
         private char[] m_passphrase2;
 
@@ -43,6 +44,7 @@ namespace LynxPrivacy
 
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            log.Error(e.Exception.Message, e.Exception);
             DialogResult result = MessageBox.Show(e.Exception.Message, "Error Detected", MessageBoxButtons.RetryCancel);
             if (result == DialogResult.Cancel)
                 this.Close();

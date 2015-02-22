@@ -15,6 +15,7 @@ namespace LynxPrivacy
     public partial class LocalKeyStore : Form
     {
 
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private bool m_secretKeyGridLoaded;
         public LocalKeyStore()
         {
@@ -26,6 +27,7 @@ namespace LynxPrivacy
 
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            log.Error(e.Exception.Message, e.Exception);
             DialogResult result = MessageBox.Show(e.Exception.Message, "Error Detected", MessageBoxButtons.RetryCancel);
             if (result == DialogResult.Cancel)
                 this.Close();
@@ -42,6 +44,7 @@ namespace LynxPrivacy
             keyViewBindingSource.DataSource = boundKeyView;
             dgvPublicKeys.ContextMenuStrip = contextMenuStrip1;
             Cursor.Current = Cursors.Default;
+            log.Debug("This is a test");
         }
 
         private void LocalKeyStore_Resize(object sender, EventArgs e)

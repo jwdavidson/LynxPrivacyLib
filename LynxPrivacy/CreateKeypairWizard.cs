@@ -9,7 +9,7 @@ namespace LynxPrivacy
 {
     public partial class CreateKeypairWizard : Form
     {
-
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private Validations m_Validations;
         public CreateKeypairWizard()
         {
@@ -47,6 +47,7 @@ namespace LynxPrivacy
 
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            log.Error(e.Exception.Message, e.Exception);
             DialogResult result = MessageBox.Show(e.Exception.Message, "Error Detected", MessageBoxButtons.RetryCancel);
             if (result == DialogResult.Cancel)
                 this.Close();
