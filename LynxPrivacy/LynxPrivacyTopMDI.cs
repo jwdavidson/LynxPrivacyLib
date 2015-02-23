@@ -26,6 +26,7 @@ namespace LynxPrivacy
             m_frmDirector.Show();
             Global.keyDb = new LynxPrivacyLib.KeyStoreDB();
             Global.keyDb.Database.Connection.Open();
+            Global.keyServerConnectionBase = "http://keys.gnupg.net:11371/";
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

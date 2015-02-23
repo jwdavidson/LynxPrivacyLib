@@ -61,5 +61,18 @@ namespace LynxPrivacy
             frmLocalKeyStore.Show();
         }
 
+        private void btnRemoteKeyserver_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() == typeof(KeyServer)) {
+                    form.Activate();
+                    return;
+                }
+            }
+            KeyServer frmKeyServer = new KeyServer();
+            frmKeyServer.MdiParent = this.MdiParent;
+            frmKeyServer.Show();
+        }
+
     }
 }

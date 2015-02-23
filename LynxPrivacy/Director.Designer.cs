@@ -67,6 +67,7 @@
             this.btnRemoteKeyserver.TabIndex = 2;
             this.btnRemoteKeyserver.Text = "Form for Remote Keyserver Access";
             this.btnRemoteKeyserver.UseVisualStyleBackColor = true;
+            this.btnRemoteKeyserver.Click += new System.EventHandler(this.btnRemoteKeyserver_Click);
             // 
             // btnLocalKeystore
             // 

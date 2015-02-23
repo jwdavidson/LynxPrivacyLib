@@ -63,6 +63,7 @@
     <Compile Include="ExportKey.cs" />
     <Compile Include="GenerateKeys.cs" />
     <Compile Include="ImportKey.cs" />
+    <Compile Include="KeySearchView.cs" />
     <Compile Include="KeyStoreDB.cs" />
     <Compile Include="KeyStores.cs" />
     <Compile Include="KeyUsers.cs" />

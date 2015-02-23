@@ -123,5 +123,17 @@ namespace LynxPrivacy
         {
             Application.ThreadException -= Application_ThreadException;
         }
+
+        private void dgvSecretKeys_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0) {
+                if ((((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == null)
+                    ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
+                else if (((bool)((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == true)
+                    ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = false;
+                else
+                    ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
+            }
+        }
     }
 }

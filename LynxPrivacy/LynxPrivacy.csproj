@@ -99,6 +99,12 @@
     <Compile Include="Director.Designer.cs">
       <DependentUpon>Director.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyServer.Designer.cs">
+      <DependentUpon>KeyServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="LocalKeyStore.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <EmbeddedResource Include="Director.resx">
       <DependentUpon>Director.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KeyServer.resx">
+      <DependentUpon>KeyServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LocalKeyStore.resx">
       <DependentUpon>LocalKeyStore.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +155,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\LynxPrivacyLib.KeySearchView.datasource" />
     <None Include="Properties\DataSources\LynxPrivacyLib.KeyUsers.datasource" />
     <None Include="Properties\DataSources\LynxPrivacyLib.KeyView.datasource" />
     <None Include="Properties\Settings.settings">

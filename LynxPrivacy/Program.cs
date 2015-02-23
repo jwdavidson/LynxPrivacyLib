@@ -41,5 +41,6 @@ namespace LynxPrivacy
     public static class Global
     {
         public static KeyStoreDB keyDb { get; set; }
+        public static string keyServerConnectionBase { get; set; }
     }
 }

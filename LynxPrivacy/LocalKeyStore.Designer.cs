@@ -55,6 +55,14 @@
             this.keyTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabSecret = new System.Windows.Forms.TabPage();
+            this.btnSecSetLocalTrust = new System.Windows.Forms.Button();
+            this.btnExpireKey = new System.Windows.Forms.Button();
+            this.btnRevoke = new System.Windows.Forms.Button();
+            this.btnChangePassphrase = new System.Windows.Forms.Button();
+            this.btnExportSecKey = new System.Windows.Forms.Button();
+            this.btnSecKeyFilter = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSecKeyfilter = new System.Windows.Forms.TextBox();
             this.dgvSecretKeys = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,14 +83,6 @@
             this.tsmiExportKey = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUploadKey = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetLocalTrust = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSecKeyFilter = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSecKeyfilter = new System.Windows.Forms.TextBox();
-            this.btnExportSecKey = new System.Windows.Forms.Button();
-            this.btnChangePassphrase = new System.Windows.Forms.Button();
-            this.btnRevoke = new System.Windows.Forms.Button();
-            this.btnExpireKey = new System.Windows.Forms.Button();
-            this.btnSecSetLocalTrust = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPublic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).BeginInit();
@@ -357,6 +357,78 @@
             this.tabSecret.Text = "Secret Keys";
             this.tabSecret.UseVisualStyleBackColor = true;
             // 
+            // btnSecSetLocalTrust
+            // 
+            this.btnSecSetLocalTrust.Location = new System.Drawing.Point(420, 16);
+            this.btnSecSetLocalTrust.Name = "btnSecSetLocalTrust";
+            this.btnSecSetLocalTrust.Size = new System.Drawing.Size(90, 23);
+            this.btnSecSetLocalTrust.TabIndex = 16;
+            this.btnSecSetLocalTrust.Text = "Set Local Trust";
+            this.btnSecSetLocalTrust.UseVisualStyleBackColor = true;
+            this.btnSecSetLocalTrust.Click += new System.EventHandler(this.btnSecSetLocalTrust_Click);
+            // 
+            // btnExpireKey
+            // 
+            this.btnExpireKey.Location = new System.Drawing.Point(339, 16);
+            this.btnExpireKey.Name = "btnExpireKey";
+            this.btnExpireKey.Size = new System.Drawing.Size(75, 23);
+            this.btnExpireKey.TabIndex = 15;
+            this.btnExpireKey.Text = "Expire Key";
+            this.btnExpireKey.UseVisualStyleBackColor = true;
+            // 
+            // btnRevoke
+            // 
+            this.btnRevoke.Location = new System.Drawing.Point(258, 16);
+            this.btnRevoke.Name = "btnRevoke";
+            this.btnRevoke.Size = new System.Drawing.Size(75, 23);
+            this.btnRevoke.TabIndex = 14;
+            this.btnRevoke.Text = "Revoke Key";
+            this.btnRevoke.UseVisualStyleBackColor = true;
+            // 
+            // btnChangePassphrase
+            // 
+            this.btnChangePassphrase.Location = new System.Drawing.Point(121, 16);
+            this.btnChangePassphrase.Name = "btnChangePassphrase";
+            this.btnChangePassphrase.Size = new System.Drawing.Size(131, 23);
+            this.btnChangePassphrase.TabIndex = 13;
+            this.btnChangePassphrase.Text = "Change Pass Phrase";
+            this.btnChangePassphrase.UseVisualStyleBackColor = true;
+            // 
+            // btnExportSecKey
+            // 
+            this.btnExportSecKey.Location = new System.Drawing.Point(40, 16);
+            this.btnExportSecKey.Name = "btnExportSecKey";
+            this.btnExportSecKey.Size = new System.Drawing.Size(75, 23);
+            this.btnExportSecKey.TabIndex = 12;
+            this.btnExportSecKey.Text = "Export Key";
+            this.btnExportSecKey.UseVisualStyleBackColor = true;
+            // 
+            // btnSecKeyFilter
+            // 
+            this.btnSecKeyFilter.Location = new System.Drawing.Point(235, 73);
+            this.btnSecKeyFilter.Name = "btnSecKeyFilter";
+            this.btnSecKeyFilter.Size = new System.Drawing.Size(86, 23);
+            this.btnSecKeyFilter.TabIndex = 11;
+            this.btnSecKeyFilter.Text = "Filter";
+            this.btnSecKeyFilter.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(37, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Enter Filter:";
+            // 
+            // txtSecKeyfilter
+            // 
+            this.txtSecKeyfilter.Location = new System.Drawing.Point(100, 73);
+            this.txtSecKeyfilter.Name = "txtSecKeyfilter";
+            this.txtSecKeyfilter.Size = new System.Drawing.Size(117, 20);
+            this.txtSecKeyfilter.TabIndex = 9;
+            this.txtSecKeyfilter.Tag = "Enter Filter Data";
+            // 
             // dgvSecretKeys
             // 
             this.dgvSecretKeys.AllowUserToAddRows = false;
@@ -385,6 +457,7 @@
             this.dgvSecretKeys.ReadOnly = true;
             this.dgvSecretKeys.Size = new System.Drawing.Size(851, 393);
             this.dgvSecretKeys.TabIndex = 1;
+            this.dgvSecretKeys.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSecretKeys_CellClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -529,78 +602,6 @@
             this.tsmiSetLocalTrust.Name = "tsmiSetLocalTrust";
             this.tsmiSetLocalTrust.Size = new System.Drawing.Size(205, 22);
             this.tsmiSetLocalTrust.Text = "Set Local Trust";
-            // 
-            // btnSecKeyFilter
-            // 
-            this.btnSecKeyFilter.Location = new System.Drawing.Point(235, 73);
-            this.btnSecKeyFilter.Name = "btnSecKeyFilter";
-            this.btnSecKeyFilter.Size = new System.Drawing.Size(86, 23);
-            this.btnSecKeyFilter.TabIndex = 11;
-            this.btnSecKeyFilter.Text = "Filter";
-            this.btnSecKeyFilter.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Enter Filter:";
-            // 
-            // txtSecKeyfilter
-            // 
-            this.txtSecKeyfilter.Location = new System.Drawing.Point(100, 73);
-            this.txtSecKeyfilter.Name = "txtSecKeyfilter";
-            this.txtSecKeyfilter.Size = new System.Drawing.Size(117, 20);
-            this.txtSecKeyfilter.TabIndex = 9;
-            this.txtSecKeyfilter.Tag = "Enter Filter Data";
-            // 
-            // btnExportSecKey
-            // 
-            this.btnExportSecKey.Location = new System.Drawing.Point(40, 16);
-            this.btnExportSecKey.Name = "btnExportSecKey";
-            this.btnExportSecKey.Size = new System.Drawing.Size(75, 23);
-            this.btnExportSecKey.TabIndex = 12;
-            this.btnExportSecKey.Text = "Export Key";
-            this.btnExportSecKey.UseVisualStyleBackColor = true;
-            // 
-            // btnChangePassphrase
-            // 
-            this.btnChangePassphrase.Location = new System.Drawing.Point(121, 16);
-            this.btnChangePassphrase.Name = "btnChangePassphrase";
-            this.btnChangePassphrase.Size = new System.Drawing.Size(131, 23);
-            this.btnChangePassphrase.TabIndex = 13;
-            this.btnChangePassphrase.Text = "Change Pass Phrase";
-            this.btnChangePassphrase.UseVisualStyleBackColor = true;
-            // 
-            // btnRevoke
-            // 
-            this.btnRevoke.Location = new System.Drawing.Point(258, 16);
-            this.btnRevoke.Name = "btnRevoke";
-            this.btnRevoke.Size = new System.Drawing.Size(75, 23);
-            this.btnRevoke.TabIndex = 14;
-            this.btnRevoke.Text = "Revoke Key";
-            this.btnRevoke.UseVisualStyleBackColor = true;
-            // 
-            // btnExpireKey
-            // 
-            this.btnExpireKey.Location = new System.Drawing.Point(339, 16);
-            this.btnExpireKey.Name = "btnExpireKey";
-            this.btnExpireKey.Size = new System.Drawing.Size(75, 23);
-            this.btnExpireKey.TabIndex = 15;
-            this.btnExpireKey.Text = "Expire Key";
-            this.btnExpireKey.UseVisualStyleBackColor = true;
-            // 
-            // btnSecSetLocalTrust
-            // 
-            this.btnSecSetLocalTrust.Location = new System.Drawing.Point(420, 16);
-            this.btnSecSetLocalTrust.Name = "btnSecSetLocalTrust";
-            this.btnSecSetLocalTrust.Size = new System.Drawing.Size(90, 23);
-            this.btnSecSetLocalTrust.TabIndex = 16;
-            this.btnSecSetLocalTrust.Text = "Set Local Trust";
-            this.btnSecSetLocalTrust.UseVisualStyleBackColor = true;
-            this.btnSecSetLocalTrust.Click += new System.EventHandler(this.btnSecSetLocalTrust_Click);
             // 
             // LocalKeyStore
             // 
