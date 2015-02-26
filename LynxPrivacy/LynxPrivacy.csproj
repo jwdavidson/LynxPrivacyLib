@@ -99,6 +99,12 @@
     <Compile Include="Director.Designer.cs">
       <DependentUpon>Director.cs</DependentUpon>
     </Compile>
+    <Compile Include="EncryptFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EncryptFile.Designer.cs">
+      <DependentUpon>EncryptFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeyServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Director.resx">
       <DependentUpon>Director.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EncryptFile.resx">
+      <DependentUpon>EncryptFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeyServer.resx">
       <DependentUpon>KeyServer.cs</DependentUpon>

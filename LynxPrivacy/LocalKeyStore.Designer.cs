@@ -165,6 +165,7 @@
             this.btnExportKey.TabIndex = 4;
             this.btnExportKey.Text = "Export Key";
             this.btnExportKey.UseVisualStyleBackColor = true;
+            this.btnExportKey.Click += new System.EventHandler(this.btnExportKey_Click);
             // 
             // btnUploadToKeyserver
             // 
@@ -174,6 +175,7 @@
             this.btnUploadToKeyserver.TabIndex = 3;
             this.btnUploadToKeyserver.Text = "Upload Key to Keyserver";
             this.btnUploadToKeyserver.UseVisualStyleBackColor = true;
+            this.btnUploadToKeyserver.Click += new System.EventHandler(this.btnUploadToKeyserver_Click);
             // 
             // btnImportKey
             // 
@@ -183,6 +185,7 @@
             this.btnImportKey.TabIndex = 2;
             this.btnImportKey.Text = "Import Key";
             this.btnImportKey.UseVisualStyleBackColor = true;
+            this.btnImportKey.Click += new System.EventHandler(this.btnImportKey_Click);
             // 
             // btnRefreshFromKeyserver
             // 
@@ -192,6 +195,7 @@
             this.btnRefreshFromKeyserver.TabIndex = 1;
             this.btnRefreshFromKeyserver.Text = "Refresh Public Keys from Key Server";
             this.btnRefreshFromKeyserver.UseVisualStyleBackColor = true;
+            this.btnRefreshFromKeyserver.Click += new System.EventHandler(this.btnRefreshFromKeyserver_Click);
             // 
             // dgvPublicKeys
             // 
@@ -375,6 +379,7 @@
             this.btnExpireKey.TabIndex = 15;
             this.btnExpireKey.Text = "Expire Key";
             this.btnExpireKey.UseVisualStyleBackColor = true;
+            this.btnExpireKey.Click += new System.EventHandler(this.btnExpireKey_Click);
             // 
             // btnRevoke
             // 
@@ -384,6 +389,7 @@
             this.btnRevoke.TabIndex = 14;
             this.btnRevoke.Text = "Revoke Key";
             this.btnRevoke.UseVisualStyleBackColor = true;
+            this.btnRevoke.Click += new System.EventHandler(this.btnRevoke_Click);
             // 
             // btnChangePassphrase
             // 
@@ -393,6 +399,7 @@
             this.btnChangePassphrase.TabIndex = 13;
             this.btnChangePassphrase.Text = "Change Pass Phrase";
             this.btnChangePassphrase.UseVisualStyleBackColor = true;
+            this.btnChangePassphrase.Click += new System.EventHandler(this.btnChangePassphrase_Click);
             // 
             // btnExportSecKey
             // 
@@ -402,6 +409,7 @@
             this.btnExportSecKey.TabIndex = 12;
             this.btnExportSecKey.Text = "Export Key";
             this.btnExportSecKey.UseVisualStyleBackColor = true;
+            this.btnExportSecKey.Click += new System.EventHandler(this.btnExportSecKey_Click);
             // 
             // btnSecKeyFilter
             // 

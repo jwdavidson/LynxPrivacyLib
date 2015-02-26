@@ -135,5 +135,45 @@ namespace LynxPrivacy
                     ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
             }
         }
+
+        private void btnExportKey_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnUploadToKeyserver_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnImportKey_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnRefreshFromKeyserver_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnExportSecKey_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnChangePassphrase_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnRevoke_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnExpireKey_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException(sender.ToString());
+        }
     }
 }
