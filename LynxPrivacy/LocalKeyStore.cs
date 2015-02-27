@@ -53,6 +53,8 @@ namespace LynxPrivacy
             tabControl1.Height = this.Height - 54;
             dgvPublicKeys.Width = tabControl1.Width - 20;
             dgvPublicKeys.Height = tabControl1.Height - 20;
+            dgvSecretKeys.Width = tabControl1.Width - 20;
+            dgvSecretKeys.Height = tabControl1.Height - 20;
         }
 
         private void dgvPublicKeys_RowContextMenuStripNeeded(object sender, DataGridViewRowContextMenuStripNeededEventArgs e)
