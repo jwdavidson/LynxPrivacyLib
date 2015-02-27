@@ -91,15 +91,15 @@
             this.lblChooseFile.AutoSize = true;
             this.lblChooseFile.Location = new System.Drawing.Point(20, 16);
             this.lblChooseFile.Name = "lblChooseFile";
-            this.lblChooseFile.Size = new System.Drawing.Size(65, 13);
+            this.lblChooseFile.Size = new System.Drawing.Size(116, 13);
             this.lblChooseFile.TabIndex = 0;
-            this.lblChooseFile.Text = "Choose File:";
+            this.lblChooseFile.Text = "Choose File to Encrypt:";
             // 
             // txtChooseFile
             // 
-            this.txtChooseFile.Location = new System.Drawing.Point(102, 14);
+            this.txtChooseFile.Location = new System.Drawing.Point(142, 14);
             this.txtChooseFile.Name = "txtChooseFile";
-            this.txtChooseFile.Size = new System.Drawing.Size(429, 20);
+            this.txtChooseFile.Size = new System.Drawing.Size(389, 20);
             this.txtChooseFile.TabIndex = 1;
             // 
             // btnChooseFile
@@ -110,6 +110,7 @@
             this.btnChooseFile.TabIndex = 2;
             this.btnChooseFile.Text = "Select File ...";
             this.btnChooseFile.UseVisualStyleBackColor = true;
+            this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
             // 
             // btnPubKeyFilter
             // 
@@ -119,6 +120,7 @@
             this.btnPubKeyFilter.TabIndex = 11;
             this.btnPubKeyFilter.Text = "Filter";
             this.btnPubKeyFilter.UseVisualStyleBackColor = true;
+            this.btnPubKeyFilter.Click += new System.EventHandler(this.btnPubKeyFilter_Click);
             // 
             // label1
             // 
@@ -162,6 +164,9 @@
             this.dgvPublicKeys.Name = "dgvPublicKeys";
             this.dgvPublicKeys.Size = new System.Drawing.Size(724, 110);
             this.dgvPublicKeys.TabIndex = 12;
+            this.dgvPublicKeys.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPublicKeys_CellClick);
+            this.dgvPublicKeys.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPublicKeys_ColumnHeaderMouseClick);
+            this.dgvPublicKeys.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPublicKeys_DataBindingComplete);
             // 
             // dataGridView1
             // 
@@ -188,6 +193,9 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(720, 78);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // lblChoosePublicKeys
             // 
@@ -215,12 +223,13 @@
             this.btnSaveFile.TabIndex = 18;
             this.btnSaveFile.Text = "Save File ...";
             this.btnSaveFile.UseVisualStyleBackColor = true;
+            this.btnSaveFile.Click += new System.EventHandler(this.btnSaveFile_Click);
             // 
             // txtSaveFile
             // 
-            this.txtSaveFile.Location = new System.Drawing.Point(102, 328);
+            this.txtSaveFile.Location = new System.Drawing.Point(142, 328);
             this.txtSaveFile.Name = "txtSaveFile";
-            this.txtSaveFile.Size = new System.Drawing.Size(429, 20);
+            this.txtSaveFile.Size = new System.Drawing.Size(389, 20);
             this.txtSaveFile.TabIndex = 17;
             // 
             // lblSaveFile
@@ -228,9 +237,9 @@
             this.lblSaveFile.AutoSize = true;
             this.lblSaveFile.Location = new System.Drawing.Point(20, 330);
             this.lblSaveFile.Name = "lblSaveFile";
-            this.lblSaveFile.Size = new System.Drawing.Size(54, 13);
+            this.lblSaveFile.Size = new System.Drawing.Size(105, 13);
             this.lblSaveFile.TabIndex = 16;
-            this.lblSaveFile.Text = "Save File:";
+            this.lblSaveFile.Text = "Save Encrypted File:";
             // 
             // btnSignOnly
             // 
@@ -240,6 +249,7 @@
             this.btnSignOnly.TabIndex = 19;
             this.btnSignOnly.Text = "Sign Only";
             this.btnSignOnly.UseVisualStyleBackColor = true;
+            this.btnSignOnly.Click += new System.EventHandler(this.btnSignOnly_Click);
             // 
             // btnEncryptOnly
             // 
@@ -249,6 +259,7 @@
             this.btnEncryptOnly.TabIndex = 20;
             this.btnEncryptOnly.Text = "Encrypt Only";
             this.btnEncryptOnly.UseVisualStyleBackColor = true;
+            this.btnEncryptOnly.Click += new System.EventHandler(this.btnEncryptOnly_Click);
             // 
             // btnEncryptSign
             // 
@@ -258,6 +269,7 @@
             this.btnEncryptSign.TabIndex = 21;
             this.btnEncryptSign.Text = "Encrypt and Sign";
             this.btnEncryptSign.UseVisualStyleBackColor = true;
+            this.btnEncryptSign.Click += new System.EventHandler(this.btnEncryptSign_Click);
             // 
             // keyViewBindingSource
             // 
@@ -500,6 +512,8 @@
             this.Controls.Add(this.lblChooseFile);
             this.Name = "EncryptFile";
             this.Text = "EncryptFile";
+            this.Load += new System.EventHandler(this.EncryptFile_Load);
+            this.Resize += new System.EventHandler(this.EncryptFile_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).EndInit();
