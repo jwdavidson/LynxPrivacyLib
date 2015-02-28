@@ -37,7 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPubKeyFilter = new System.Windows.Forms.TextBox();
             this.dgvPublicKeys = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSecretKeys = new System.Windows.Forms.DataGridView();
             this.lblChoosePublicKeys = new System.Windows.Forms.Label();
             this.lblSelectSender = new System.Windows.Forms.Label();
             this.btnSaveFile = new System.Windows.Forms.Button();
@@ -78,7 +78,7 @@
             this.ownerTrustDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSecretKeys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,11 +168,11 @@
             this.dgvPublicKeys.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPublicKeys_ColumnHeaderMouseClick);
             this.dgvPublicKeys.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPublicKeys_DataBindingComplete);
             // 
-            // dataGridView1
+            // dgvSecretKeys
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSecretKeys.AutoGenerateColumns = false;
+            this.dgvSecretKeys.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSecretKeys.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Selected,
             this.keyUserIdDataGridViewTextBoxColumn1,
             this.keyStoreIdDataGridViewTextBoxColumn1,
@@ -188,14 +188,14 @@
             this.fingerprintDataGridViewTextBoxColumn1,
             this.ownerTrustDataGridViewTextBoxColumn1,
             this.keyTypeDataGridViewTextBoxColumn1});
-            this.dataGridView1.DataSource = this.keyViewBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 234);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(720, 78);
-            this.dataGridView1.TabIndex = 13;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
-            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
+            this.dgvSecretKeys.DataSource = this.keyViewBindingSource;
+            this.dgvSecretKeys.Location = new System.Drawing.Point(17, 234);
+            this.dgvSecretKeys.Name = "dgvSecretKeys";
+            this.dgvSecretKeys.Size = new System.Drawing.Size(720, 78);
+            this.dgvSecretKeys.TabIndex = 13;
+            this.dgvSecretKeys.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dgvSecretKeys.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
+            this.dgvSecretKeys.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // lblChoosePublicKeys
             // 
@@ -502,7 +502,7 @@
             this.Controls.Add(this.lblSaveFile);
             this.Controls.Add(this.lblSelectSender);
             this.Controls.Add(this.lblChoosePublicKeys);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvSecretKeys);
             this.Controls.Add(this.dgvPublicKeys);
             this.Controls.Add(this.btnPubKeyFilter);
             this.Controls.Add(this.label1);
@@ -512,10 +512,11 @@
             this.Controls.Add(this.lblChooseFile);
             this.Name = "EncryptFile";
             this.Text = "EncryptFile";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EncryptFile_FormClosing);
             this.Load += new System.EventHandler(this.EncryptFile_Load);
             this.Resize += new System.EventHandler(this.EncryptFile_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSecretKeys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -533,7 +534,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPubKeyFilter;
         private System.Windows.Forms.DataGridView dgvPublicKeys;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSecretKeys;
         private System.Windows.Forms.Label lblChoosePublicKeys;
         private System.Windows.Forms.Label lblSelectSender;
         private System.Windows.Forms.Button btnSaveFile;
