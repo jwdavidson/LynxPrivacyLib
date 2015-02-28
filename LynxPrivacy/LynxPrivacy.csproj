@@ -93,6 +93,12 @@
     <Compile Include="CreateKeyPair.Designer.cs">
       <DependentUpon>CreateKeyPair.cs</DependentUpon>
     </Compile>
+    <Compile Include="DecryptFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecryptFile.Designer.cs">
+      <DependentUpon>DecryptFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Director.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateKeyPair.resx">
       <DependentUpon>CreateKeyPair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecryptFile.resx">
+      <DependentUpon>DecryptFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Director.resx">
       <DependentUpon>Director.cs</DependentUpon>

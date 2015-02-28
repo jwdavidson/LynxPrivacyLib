@@ -74,5 +74,18 @@ namespace LynxPrivacy
             frmKeyServer.Show();
         }
 
+        private void btnEncryptFile_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() == typeof(KeyServer)) {
+                    form.Activate();
+                    return;
+                }
+            }
+            EncryptFile frmEncryptFile = new EncryptFile();
+            frmEncryptFile.MdiParent = this.MdiParent;
+            frmEncryptFile.Show();
+        }
+
     }
 }

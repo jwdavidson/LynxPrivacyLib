@@ -11,14 +11,14 @@ using LynxPrivacyLib;
 
 namespace LynxPrivacy
 {
-    public partial class EncryptFile : Form
+    public partial class DecryptFile : Form
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public EncryptFile()
+        public DecryptFile()
         {
             InitializeComponent();
             Application.ThreadException += Application_ThreadException;
-            }
+        }
 
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
@@ -29,7 +29,7 @@ namespace LynxPrivacy
                 this.Close();
         }
 
-        private void EncryptFile_Load(object sender, EventArgs e)
+        private void DecryptFile_Load(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             SortableBindingList<KeyView> bndPublicKeyView = new SortableBindingList<KeyView>();
@@ -47,7 +47,7 @@ namespace LynxPrivacy
             Cursor.Current = Cursors.Default;
         }
 
-        private void EncryptFile_Resize(object sender, EventArgs e)
+        private void DecryptFile_Resize(object sender, EventArgs e)
         {
             dgvPublicKeys.Width = this.Width - 54;
             dgvSecretKeys.Width = this.Width - 54;
@@ -81,7 +81,7 @@ namespace LynxPrivacy
                 SortOrder.Ascending : SortOrder.Descending;
         }
 
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvSecretKeys_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridViewColumn newColumn = dgvSecretKeys.Columns[e.ColumnIndex];
             DataGridViewColumn oldColumn = dgvSecretKeys.SortedColumn;
@@ -117,7 +117,7 @@ namespace LynxPrivacy
             }
         }
 
-        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void dgvSecretKeys_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             // Put each of the columns into programmatic sort mode. 
             foreach (DataGridViewColumn column in dgvSecretKeys.Columns) {
@@ -137,7 +137,7 @@ namespace LynxPrivacy
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSecretKeys_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0) {
                 if ((((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == null)
@@ -169,17 +169,12 @@ namespace LynxPrivacy
             throw new NotImplementedException(sender.ToString());
         }
 
-        private void btnEncryptOnly_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException(sender.ToString());
-        }
-
         private void btnEncryptSign_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException(sender.ToString());
         }
 
-        private void EncryptFile_FormClosing(object sender, FormClosingEventArgs e)
+        private void DecryptFile_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.ThreadException -= Application_ThreadException;
         }

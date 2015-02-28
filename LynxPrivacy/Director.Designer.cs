@@ -87,6 +87,7 @@
             this.btnEncryptFile.TabIndex = 4;
             this.btnEncryptFile.Text = "Form to Encrypt File";
             this.btnEncryptFile.UseVisualStyleBackColor = true;
+            this.btnEncryptFile.Click += new System.EventHandler(this.btnEncryptFile_Click);
             // 
             // btnDecryptFile
             // 
