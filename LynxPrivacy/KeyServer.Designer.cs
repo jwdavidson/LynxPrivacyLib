@@ -28,13 +28,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeyServer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnSearchKeyserver = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtPubKeyFilter = new System.Windows.Forms.TextBox();
-            this.btnLocalSearch = new System.Windows.Forms.Button();
-            this.btmImportSelectedKeysToKeystore = new System.Windows.Forms.Button();
-            this.keySearchViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyLineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +38,12 @@
             this.keyExpiredDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.algorithmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keySizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.keySearchViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSearchKeyserver = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtPubKeyFilter = new System.Windows.Forms.TextBox();
+            this.btnLocalSearch = new System.Windows.Forms.Button();
+            this.btmImportSelectedKeysToKeystore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.keySearchViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -71,57 +72,6 @@
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
-            // 
-            // btnSearchKeyserver
-            // 
-            this.btnSearchKeyserver.Location = new System.Drawing.Point(364, 62);
-            this.btnSearchKeyserver.Name = "btnSearchKeyserver";
-            this.btnSearchKeyserver.Size = new System.Drawing.Size(153, 23);
-            this.btnSearchKeyserver.TabIndex = 11;
-            this.btnSearchKeyserver.Text = "Search Remote Keyserver";
-            this.btnSearchKeyserver.UseVisualStyleBackColor = true;
-            this.btnSearchKeyserver.Click += new System.EventHandler(this.btnSearchKeyserver_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Enter Search Text:";
-            // 
-            // txtPubKeyFilter
-            // 
-            this.txtPubKeyFilter.Location = new System.Drawing.Point(124, 62);
-            this.txtPubKeyFilter.Name = "txtPubKeyFilter";
-            this.txtPubKeyFilter.Size = new System.Drawing.Size(234, 20);
-            this.txtPubKeyFilter.TabIndex = 9;
-            this.txtPubKeyFilter.Tag = "Enter Filter Data";
-            // 
-            // btnLocalSearch
-            // 
-            this.btnLocalSearch.Location = new System.Drawing.Point(523, 62);
-            this.btnLocalSearch.Name = "btnLocalSearch";
-            this.btnLocalSearch.Size = new System.Drawing.Size(180, 23);
-            this.btnLocalSearch.TabIndex = 12;
-            this.btnLocalSearch.Text = "Search Local Keyserver Results";
-            this.btnLocalSearch.UseVisualStyleBackColor = true;
-            this.btnLocalSearch.Click += new System.EventHandler(this.btnLocalSearch_Click);
-            // 
-            // btmImportSelectedKeysToKeystore
-            // 
-            this.btmImportSelectedKeysToKeystore.Location = new System.Drawing.Point(31, 12);
-            this.btmImportSelectedKeysToKeystore.Name = "btmImportSelectedKeysToKeystore";
-            this.btmImportSelectedKeysToKeystore.Size = new System.Drawing.Size(223, 23);
-            this.btmImportSelectedKeysToKeystore.TabIndex = 13;
-            this.btmImportSelectedKeysToKeystore.Text = "Import Selected Keys to Local Key Store";
-            this.btmImportSelectedKeysToKeystore.UseVisualStyleBackColor = true;
-            this.btmImportSelectedKeysToKeystore.Click += new System.EventHandler(this.btmImportSelectedKeysToKeystore_Click);
-            // 
-            // keySearchViewBindingSource
-            // 
-            this.keySearchViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeySearchView);
             // 
             // Selected
             // 
@@ -188,6 +138,57 @@
             this.keySizeDataGridViewTextBoxColumn.ReadOnly = true;
             this.keySizeDataGridViewTextBoxColumn.Width = 50;
             // 
+            // keySearchViewBindingSource
+            // 
+            this.keySearchViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeySearchView);
+            // 
+            // btnSearchKeyserver
+            // 
+            this.btnSearchKeyserver.Location = new System.Drawing.Point(364, 62);
+            this.btnSearchKeyserver.Name = "btnSearchKeyserver";
+            this.btnSearchKeyserver.Size = new System.Drawing.Size(153, 23);
+            this.btnSearchKeyserver.TabIndex = 11;
+            this.btnSearchKeyserver.Text = "Search Remote Keyserver";
+            this.btnSearchKeyserver.UseVisualStyleBackColor = true;
+            this.btnSearchKeyserver.Click += new System.EventHandler(this.btnSearchKeyserver_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Enter Search Text:";
+            // 
+            // txtPubKeyFilter
+            // 
+            this.txtPubKeyFilter.Location = new System.Drawing.Point(124, 62);
+            this.txtPubKeyFilter.Name = "txtPubKeyFilter";
+            this.txtPubKeyFilter.Size = new System.Drawing.Size(234, 20);
+            this.txtPubKeyFilter.TabIndex = 9;
+            this.txtPubKeyFilter.Tag = "Enter Filter Data";
+            // 
+            // btnLocalSearch
+            // 
+            this.btnLocalSearch.Location = new System.Drawing.Point(523, 62);
+            this.btnLocalSearch.Name = "btnLocalSearch";
+            this.btnLocalSearch.Size = new System.Drawing.Size(180, 23);
+            this.btnLocalSearch.TabIndex = 12;
+            this.btnLocalSearch.Text = "Search Local Keyserver Results";
+            this.btnLocalSearch.UseVisualStyleBackColor = true;
+            this.btnLocalSearch.Click += new System.EventHandler(this.btnLocalSearch_Click);
+            // 
+            // btmImportSelectedKeysToKeystore
+            // 
+            this.btmImportSelectedKeysToKeystore.Location = new System.Drawing.Point(31, 12);
+            this.btmImportSelectedKeysToKeystore.Name = "btmImportSelectedKeysToKeystore";
+            this.btmImportSelectedKeysToKeystore.Size = new System.Drawing.Size(223, 23);
+            this.btmImportSelectedKeysToKeystore.TabIndex = 13;
+            this.btmImportSelectedKeysToKeystore.Text = "Import Selected Keys to Local Key Store";
+            this.btmImportSelectedKeysToKeystore.UseVisualStyleBackColor = true;
+            this.btmImportSelectedKeysToKeystore.Click += new System.EventHandler(this.btmImportSelectedKeysToKeystore_Click);
+            // 
             // KeyServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +200,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPubKeyFilter);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "KeyServer";
             this.Text = "KeyServer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.KeyServer_FormClosing);

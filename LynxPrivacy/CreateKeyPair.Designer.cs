@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateKeyPair));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.lblFirstName = new System.Windows.Forms.Label();
@@ -347,6 +348,7 @@
             this.Controls.Add(this.pnlSurname);
             this.Controls.Add(this.pnlFirstname);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateKeyPair";
             this.Text = "Create Key Pair";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateKeyPair_FormClosing);

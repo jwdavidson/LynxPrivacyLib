@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EncryptFile));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.lblChooseFile = new System.Windows.Forms.Label();
@@ -46,8 +47,8 @@
             this.btnSignOnly = new System.Windows.Forms.Button();
             this.btnEncryptOnly = new System.Windows.Forms.Button();
             this.btnEncryptSign = new System.Windows.Forms.Button();
-            this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Selected1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyUserIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyStoreIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,7 +63,7 @@
             this.fingerprintDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerTrustDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Selected1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.keyUserIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyStoreIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -271,10 +272,6 @@
             this.btnEncryptSign.UseVisualStyleBackColor = true;
             this.btnEncryptSign.Click += new System.EventHandler(this.btnEncryptSign_Click);
             // 
-            // keyViewBindingSource
-            // 
-            this.keyViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeyView);
-            // 
             // Selected
             // 
             this.Selected.FalseValue = "false";
@@ -283,6 +280,15 @@
             this.Selected.Name = "Selected";
             this.Selected.TrueValue = "true";
             this.Selected.Width = 60;
+            // 
+            // Selected1
+            // 
+            this.Selected1.FalseValue = "false";
+            this.Selected1.HeaderText = "Selected";
+            this.Selected1.IndeterminateValue = "false";
+            this.Selected1.Name = "Selected1";
+            this.Selected1.TrueValue = "true";
+            this.Selected1.Width = 60;
             // 
             // keyUserIdDataGridViewTextBoxColumn1
             // 
@@ -382,14 +388,9 @@
             this.keyTypeDataGridViewTextBoxColumn1.Name = "keyTypeDataGridViewTextBoxColumn1";
             this.keyTypeDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // Selected1
+            // keyViewBindingSource
             // 
-            this.Selected1.FalseValue = "false";
-            this.Selected1.HeaderText = "Selected";
-            this.Selected1.IndeterminateValue = "false";
-            this.Selected1.Name = "Selected1";
-            this.Selected1.TrueValue = "true";
-            this.Selected1.Width = 60;
+            this.keyViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeyView);
             // 
             // keyUserIdDataGridViewTextBoxColumn
             // 
@@ -510,6 +511,7 @@
             this.Controls.Add(this.btnChooseFile);
             this.Controls.Add(this.txtChooseFile);
             this.Controls.Add(this.lblChooseFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EncryptFile";
             this.Text = "EncryptFile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EncryptFile_FormClosing);

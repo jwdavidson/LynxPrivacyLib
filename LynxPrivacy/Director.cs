@@ -87,5 +87,18 @@ namespace LynxPrivacy
             frmEncryptFile.Show();
         }
 
+        private void btnDecryptFile_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() == typeof(KeyServer)) {
+                    form.Activate();
+                    return;
+                }
+            }
+            DecryptFile frmDecryptFile = new DecryptFile();
+            frmDecryptFile.MdiParent = this.MdiParent;
+            frmDecryptFile.Show();
+        }
+
     }
 }

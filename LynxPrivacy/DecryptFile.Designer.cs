@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecryptFile));
             this.btnEncryptSign = new System.Windows.Forms.Button();
             this.btnSignOnly = new System.Windows.Forms.Button();
             this.btnSaveFile = new System.Windows.Forms.Button();
@@ -47,6 +48,20 @@
             this.lblChooseFile = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.keyUserIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.keyStoreIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.encryptionTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.keySizeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.creationTimeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.validDaysDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isMasterKeyDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isSigningKeyDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isEncryptionKeyDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.fingerprintDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ownerTrustDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.keyTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.keyUserIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyStoreIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,20 +77,6 @@
             this.fingerprintDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerTrustDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.keyUserIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.keyStoreIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.encryptionTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.keySizeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.creationTimeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.validDaysDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isMasterKeyDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isSigningKeyDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isEncryptionKeyDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.fingerprintDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownerTrustDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.keyTypeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSecretKeys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).BeginInit();
@@ -83,7 +84,7 @@
             // 
             // btnEncryptSign
             // 
-            this.btnEncryptSign.Location = new System.Drawing.Point(191, 361);
+            this.btnEncryptSign.Location = new System.Drawing.Point(153, 356);
             this.btnEncryptSign.Name = "btnEncryptSign";
             this.btnEncryptSign.Size = new System.Drawing.Size(189, 25);
             this.btnEncryptSign.TabIndex = 37;
@@ -93,7 +94,7 @@
             // 
             // btnSignOnly
             // 
-            this.btnSignOnly.Location = new System.Drawing.Point(66, 361);
+            this.btnSignOnly.Location = new System.Drawing.Point(28, 356);
             this.btnSignOnly.Name = "btnSignOnly";
             this.btnSignOnly.Size = new System.Drawing.Size(106, 25);
             this.btnSignOnly.TabIndex = 35;
@@ -103,7 +104,7 @@
             // 
             // btnSaveFile
             // 
-            this.btnSaveFile.Location = new System.Drawing.Point(587, 322);
+            this.btnSaveFile.Location = new System.Drawing.Point(549, 317);
             this.btnSaveFile.Name = "btnSaveFile";
             this.btnSaveFile.Size = new System.Drawing.Size(130, 21);
             this.btnSaveFile.TabIndex = 34;
@@ -113,7 +114,7 @@
             // 
             // txtSaveFile
             // 
-            this.txtSaveFile.Location = new System.Drawing.Point(177, 322);
+            this.txtSaveFile.Location = new System.Drawing.Point(139, 317);
             this.txtSaveFile.Name = "txtSaveFile";
             this.txtSaveFile.Size = new System.Drawing.Size(389, 20);
             this.txtSaveFile.TabIndex = 33;
@@ -121,7 +122,7 @@
             // lblSaveFile
             // 
             this.lblSaveFile.AutoSize = true;
-            this.lblSaveFile.Location = new System.Drawing.Point(55, 324);
+            this.lblSaveFile.Location = new System.Drawing.Point(17, 319);
             this.lblSaveFile.Name = "lblSaveFile";
             this.lblSaveFile.Size = new System.Drawing.Size(106, 13);
             this.lblSaveFile.TabIndex = 32;
@@ -130,7 +131,7 @@
             // lblSelectSender
             // 
             this.lblSelectSender.AutoSize = true;
-            this.lblSelectSender.Location = new System.Drawing.Point(62, 209);
+            this.lblSelectSender.Location = new System.Drawing.Point(24, 204);
             this.lblSelectSender.Name = "lblSelectSender";
             this.lblSelectSender.Size = new System.Drawing.Size(85, 13);
             this.lblSelectSender.TabIndex = 31;
@@ -139,7 +140,7 @@
             // lblChoosePublicKeys
             // 
             this.lblChoosePublicKeys.AutoSize = true;
-            this.lblChoosePublicKeys.Location = new System.Drawing.Point(55, 58);
+            this.lblChoosePublicKeys.Location = new System.Drawing.Point(17, 53);
             this.lblChoosePublicKeys.Name = "lblChoosePublicKeys";
             this.lblChoosePublicKeys.Size = new System.Drawing.Size(85, 13);
             this.lblChoosePublicKeys.TabIndex = 30;
@@ -168,7 +169,7 @@
             this.ownerTrustDataGridViewTextBoxColumn1,
             this.keyTypeDataGridViewTextBoxColumn1});
             this.dgvSecretKeys.DataSource = this.keyViewBindingSource;
-            this.dgvSecretKeys.Location = new System.Drawing.Point(52, 228);
+            this.dgvSecretKeys.Location = new System.Drawing.Point(14, 223);
             this.dgvSecretKeys.Name = "dgvSecretKeys";
             this.dgvSecretKeys.ReadOnly = true;
             this.dgvSecretKeys.Size = new System.Drawing.Size(720, 78);
@@ -210,7 +211,7 @@
             this.ownerTrustDataGridViewTextBoxColumn,
             this.keyTypeDataGridViewTextBoxColumn});
             this.dgvPublicKeys.DataSource = this.keyViewBindingSource;
-            this.dgvPublicKeys.Location = new System.Drawing.Point(49, 80);
+            this.dgvPublicKeys.Location = new System.Drawing.Point(11, 75);
             this.dgvPublicKeys.Name = "dgvPublicKeys";
             this.dgvPublicKeys.ReadOnly = true;
             this.dgvPublicKeys.Size = new System.Drawing.Size(724, 110);
@@ -231,7 +232,7 @@
             // 
             // btnPubKeyFilter
             // 
-            this.btnPubKeyFilter.Location = new System.Drawing.Point(398, 51);
+            this.btnPubKeyFilter.Location = new System.Drawing.Point(360, 46);
             this.btnPubKeyFilter.Name = "btnPubKeyFilter";
             this.btnPubKeyFilter.Size = new System.Drawing.Size(86, 23);
             this.btnPubKeyFilter.TabIndex = 27;
@@ -242,7 +243,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(200, 54);
+            this.label1.Location = new System.Drawing.Point(162, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 26;
@@ -250,7 +251,7 @@
             // 
             // txtPubKeyFilter
             // 
-            this.txtPubKeyFilter.Location = new System.Drawing.Point(263, 51);
+            this.txtPubKeyFilter.Location = new System.Drawing.Point(225, 46);
             this.txtPubKeyFilter.Name = "txtPubKeyFilter";
             this.txtPubKeyFilter.Size = new System.Drawing.Size(117, 20);
             this.txtPubKeyFilter.TabIndex = 25;
@@ -258,7 +259,7 @@
             // 
             // btnChooseFile
             // 
-            this.btnChooseFile.Location = new System.Drawing.Point(587, 8);
+            this.btnChooseFile.Location = new System.Drawing.Point(549, 3);
             this.btnChooseFile.Name = "btnChooseFile";
             this.btnChooseFile.Size = new System.Drawing.Size(130, 21);
             this.btnChooseFile.TabIndex = 24;
@@ -268,7 +269,7 @@
             // 
             // txtChooseFile
             // 
-            this.txtChooseFile.Location = new System.Drawing.Point(177, 8);
+            this.txtChooseFile.Location = new System.Drawing.Point(139, 3);
             this.txtChooseFile.Name = "txtChooseFile";
             this.txtChooseFile.Size = new System.Drawing.Size(389, 20);
             this.txtChooseFile.TabIndex = 23;
@@ -276,7 +277,7 @@
             // lblChooseFile
             // 
             this.lblChooseFile.AutoSize = true;
-            this.lblChooseFile.Location = new System.Drawing.Point(55, 10);
+            this.lblChooseFile.Location = new System.Drawing.Point(17, 5);
             this.lblChooseFile.Name = "lblChooseFile";
             this.lblChooseFile.Size = new System.Drawing.Size(117, 13);
             this.lblChooseFile.TabIndex = 22;
@@ -285,6 +286,104 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // keyUserIdDataGridViewTextBoxColumn1
+            // 
+            this.keyUserIdDataGridViewTextBoxColumn1.DataPropertyName = "KeyUserId";
+            this.keyUserIdDataGridViewTextBoxColumn1.HeaderText = "KeyUserId";
+            this.keyUserIdDataGridViewTextBoxColumn1.Name = "keyUserIdDataGridViewTextBoxColumn1";
+            this.keyUserIdDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // keyStoreIdDataGridViewTextBoxColumn1
+            // 
+            this.keyStoreIdDataGridViewTextBoxColumn1.DataPropertyName = "KeyStoreId";
+            this.keyStoreIdDataGridViewTextBoxColumn1.HeaderText = "KeyStoreId";
+            this.keyStoreIdDataGridViewTextBoxColumn1.Name = "keyStoreIdDataGridViewTextBoxColumn1";
+            this.keyStoreIdDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // userNameDataGridViewTextBoxColumn1
+            // 
+            this.userNameDataGridViewTextBoxColumn1.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn1.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn1.Name = "userNameDataGridViewTextBoxColumn1";
+            this.userNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn1
+            // 
+            this.emailDataGridViewTextBoxColumn1.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn1.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn1.Name = "emailDataGridViewTextBoxColumn1";
+            this.emailDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // encryptionTypeDataGridViewTextBoxColumn1
+            // 
+            this.encryptionTypeDataGridViewTextBoxColumn1.DataPropertyName = "EncryptionType";
+            this.encryptionTypeDataGridViewTextBoxColumn1.HeaderText = "EncryptionType";
+            this.encryptionTypeDataGridViewTextBoxColumn1.Name = "encryptionTypeDataGridViewTextBoxColumn1";
+            this.encryptionTypeDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // keySizeDataGridViewTextBoxColumn1
+            // 
+            this.keySizeDataGridViewTextBoxColumn1.DataPropertyName = "KeySize";
+            this.keySizeDataGridViewTextBoxColumn1.HeaderText = "KeySize";
+            this.keySizeDataGridViewTextBoxColumn1.Name = "keySizeDataGridViewTextBoxColumn1";
+            this.keySizeDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // creationTimeDataGridViewTextBoxColumn1
+            // 
+            this.creationTimeDataGridViewTextBoxColumn1.DataPropertyName = "CreationTime";
+            this.creationTimeDataGridViewTextBoxColumn1.HeaderText = "CreationTime";
+            this.creationTimeDataGridViewTextBoxColumn1.Name = "creationTimeDataGridViewTextBoxColumn1";
+            this.creationTimeDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // validDaysDataGridViewTextBoxColumn1
+            // 
+            this.validDaysDataGridViewTextBoxColumn1.DataPropertyName = "ValidDays";
+            this.validDaysDataGridViewTextBoxColumn1.HeaderText = "ValidDays";
+            this.validDaysDataGridViewTextBoxColumn1.Name = "validDaysDataGridViewTextBoxColumn1";
+            this.validDaysDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // isMasterKeyDataGridViewCheckBoxColumn1
+            // 
+            this.isMasterKeyDataGridViewCheckBoxColumn1.DataPropertyName = "IsMasterKey";
+            this.isMasterKeyDataGridViewCheckBoxColumn1.HeaderText = "IsMasterKey";
+            this.isMasterKeyDataGridViewCheckBoxColumn1.Name = "isMasterKeyDataGridViewCheckBoxColumn1";
+            this.isMasterKeyDataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // isSigningKeyDataGridViewCheckBoxColumn1
+            // 
+            this.isSigningKeyDataGridViewCheckBoxColumn1.DataPropertyName = "IsSigningKey";
+            this.isSigningKeyDataGridViewCheckBoxColumn1.HeaderText = "IsSigningKey";
+            this.isSigningKeyDataGridViewCheckBoxColumn1.Name = "isSigningKeyDataGridViewCheckBoxColumn1";
+            this.isSigningKeyDataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // isEncryptionKeyDataGridViewCheckBoxColumn1
+            // 
+            this.isEncryptionKeyDataGridViewCheckBoxColumn1.DataPropertyName = "IsEncryptionKey";
+            this.isEncryptionKeyDataGridViewCheckBoxColumn1.HeaderText = "IsEncryptionKey";
+            this.isEncryptionKeyDataGridViewCheckBoxColumn1.Name = "isEncryptionKeyDataGridViewCheckBoxColumn1";
+            this.isEncryptionKeyDataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // fingerprintDataGridViewTextBoxColumn1
+            // 
+            this.fingerprintDataGridViewTextBoxColumn1.DataPropertyName = "Fingerprint";
+            this.fingerprintDataGridViewTextBoxColumn1.HeaderText = "Fingerprint";
+            this.fingerprintDataGridViewTextBoxColumn1.Name = "fingerprintDataGridViewTextBoxColumn1";
+            this.fingerprintDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ownerTrustDataGridViewTextBoxColumn1
+            // 
+            this.ownerTrustDataGridViewTextBoxColumn1.DataPropertyName = "OwnerTrust";
+            this.ownerTrustDataGridViewTextBoxColumn1.HeaderText = "OwnerTrust";
+            this.ownerTrustDataGridViewTextBoxColumn1.Name = "ownerTrustDataGridViewTextBoxColumn1";
+            this.ownerTrustDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // keyTypeDataGridViewTextBoxColumn1
+            // 
+            this.keyTypeDataGridViewTextBoxColumn1.DataPropertyName = "KeyType";
+            this.keyTypeDataGridViewTextBoxColumn1.HeaderText = "KeyType";
+            this.keyTypeDataGridViewTextBoxColumn1.Name = "keyTypeDataGridViewTextBoxColumn1";
+            this.keyTypeDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // keyViewBindingSource
             // 
@@ -388,109 +487,11 @@
             this.keyTypeDataGridViewTextBoxColumn.Name = "keyTypeDataGridViewTextBoxColumn";
             this.keyTypeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // keyUserIdDataGridViewTextBoxColumn1
-            // 
-            this.keyUserIdDataGridViewTextBoxColumn1.DataPropertyName = "KeyUserId";
-            this.keyUserIdDataGridViewTextBoxColumn1.HeaderText = "KeyUserId";
-            this.keyUserIdDataGridViewTextBoxColumn1.Name = "keyUserIdDataGridViewTextBoxColumn1";
-            this.keyUserIdDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // keyStoreIdDataGridViewTextBoxColumn1
-            // 
-            this.keyStoreIdDataGridViewTextBoxColumn1.DataPropertyName = "KeyStoreId";
-            this.keyStoreIdDataGridViewTextBoxColumn1.HeaderText = "KeyStoreId";
-            this.keyStoreIdDataGridViewTextBoxColumn1.Name = "keyStoreIdDataGridViewTextBoxColumn1";
-            this.keyStoreIdDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // userNameDataGridViewTextBoxColumn1
-            // 
-            this.userNameDataGridViewTextBoxColumn1.DataPropertyName = "UserName";
-            this.userNameDataGridViewTextBoxColumn1.HeaderText = "UserName";
-            this.userNameDataGridViewTextBoxColumn1.Name = "userNameDataGridViewTextBoxColumn1";
-            this.userNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn1
-            // 
-            this.emailDataGridViewTextBoxColumn1.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn1.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn1.Name = "emailDataGridViewTextBoxColumn1";
-            this.emailDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // encryptionTypeDataGridViewTextBoxColumn1
-            // 
-            this.encryptionTypeDataGridViewTextBoxColumn1.DataPropertyName = "EncryptionType";
-            this.encryptionTypeDataGridViewTextBoxColumn1.HeaderText = "EncryptionType";
-            this.encryptionTypeDataGridViewTextBoxColumn1.Name = "encryptionTypeDataGridViewTextBoxColumn1";
-            this.encryptionTypeDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // keySizeDataGridViewTextBoxColumn1
-            // 
-            this.keySizeDataGridViewTextBoxColumn1.DataPropertyName = "KeySize";
-            this.keySizeDataGridViewTextBoxColumn1.HeaderText = "KeySize";
-            this.keySizeDataGridViewTextBoxColumn1.Name = "keySizeDataGridViewTextBoxColumn1";
-            this.keySizeDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // creationTimeDataGridViewTextBoxColumn1
-            // 
-            this.creationTimeDataGridViewTextBoxColumn1.DataPropertyName = "CreationTime";
-            this.creationTimeDataGridViewTextBoxColumn1.HeaderText = "CreationTime";
-            this.creationTimeDataGridViewTextBoxColumn1.Name = "creationTimeDataGridViewTextBoxColumn1";
-            this.creationTimeDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // validDaysDataGridViewTextBoxColumn1
-            // 
-            this.validDaysDataGridViewTextBoxColumn1.DataPropertyName = "ValidDays";
-            this.validDaysDataGridViewTextBoxColumn1.HeaderText = "ValidDays";
-            this.validDaysDataGridViewTextBoxColumn1.Name = "validDaysDataGridViewTextBoxColumn1";
-            this.validDaysDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // isMasterKeyDataGridViewCheckBoxColumn1
-            // 
-            this.isMasterKeyDataGridViewCheckBoxColumn1.DataPropertyName = "IsMasterKey";
-            this.isMasterKeyDataGridViewCheckBoxColumn1.HeaderText = "IsMasterKey";
-            this.isMasterKeyDataGridViewCheckBoxColumn1.Name = "isMasterKeyDataGridViewCheckBoxColumn1";
-            this.isMasterKeyDataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // isSigningKeyDataGridViewCheckBoxColumn1
-            // 
-            this.isSigningKeyDataGridViewCheckBoxColumn1.DataPropertyName = "IsSigningKey";
-            this.isSigningKeyDataGridViewCheckBoxColumn1.HeaderText = "IsSigningKey";
-            this.isSigningKeyDataGridViewCheckBoxColumn1.Name = "isSigningKeyDataGridViewCheckBoxColumn1";
-            this.isSigningKeyDataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // isEncryptionKeyDataGridViewCheckBoxColumn1
-            // 
-            this.isEncryptionKeyDataGridViewCheckBoxColumn1.DataPropertyName = "IsEncryptionKey";
-            this.isEncryptionKeyDataGridViewCheckBoxColumn1.HeaderText = "IsEncryptionKey";
-            this.isEncryptionKeyDataGridViewCheckBoxColumn1.Name = "isEncryptionKeyDataGridViewCheckBoxColumn1";
-            this.isEncryptionKeyDataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // fingerprintDataGridViewTextBoxColumn1
-            // 
-            this.fingerprintDataGridViewTextBoxColumn1.DataPropertyName = "Fingerprint";
-            this.fingerprintDataGridViewTextBoxColumn1.HeaderText = "Fingerprint";
-            this.fingerprintDataGridViewTextBoxColumn1.Name = "fingerprintDataGridViewTextBoxColumn1";
-            this.fingerprintDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // ownerTrustDataGridViewTextBoxColumn1
-            // 
-            this.ownerTrustDataGridViewTextBoxColumn1.DataPropertyName = "OwnerTrust";
-            this.ownerTrustDataGridViewTextBoxColumn1.HeaderText = "OwnerTrust";
-            this.ownerTrustDataGridViewTextBoxColumn1.Name = "ownerTrustDataGridViewTextBoxColumn1";
-            this.ownerTrustDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // keyTypeDataGridViewTextBoxColumn1
-            // 
-            this.keyTypeDataGridViewTextBoxColumn1.DataPropertyName = "KeyType";
-            this.keyTypeDataGridViewTextBoxColumn1.HeaderText = "KeyType";
-            this.keyTypeDataGridViewTextBoxColumn1.Name = "keyTypeDataGridViewTextBoxColumn1";
-            this.keyTypeDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
             // DecryptFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 394);
+            this.ClientSize = new System.Drawing.Size(752, 394);
             this.Controls.Add(this.btnEncryptSign);
             this.Controls.Add(this.btnSignOnly);
             this.Controls.Add(this.btnSaveFile);
@@ -506,6 +507,7 @@
             this.Controls.Add(this.btnChooseFile);
             this.Controls.Add(this.txtChooseFile);
             this.Controls.Add(this.lblChooseFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DecryptFile";
             this.Text = "DecryptFile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DecryptFile_FormClosing);

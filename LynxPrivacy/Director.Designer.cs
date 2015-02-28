@@ -97,6 +97,7 @@
             this.btnDecryptFile.TabIndex = 5;
             this.btnDecryptFile.Text = "Form to Decrypt File";
             this.btnDecryptFile.UseVisualStyleBackColor = true;
+            this.btnDecryptFile.Click += new System.EventHandler(this.btnDecryptFile_Click);
             // 
             // btnEncryptClipboard
             // 

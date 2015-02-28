@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateKeypairWizard));
             this.wzrdCreateKeyPair = new AeroWizard.WizardControl();
             this.wzrdCreateKpDesc = new AeroWizard.WizardPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -422,6 +423,7 @@
             this.Controls.Add(this.wzrdCreateKeyPair);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateKeypairWizard";
             this.Text = "Create PGP Key Pair Wizard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateKeypairWizard_FormClosing);

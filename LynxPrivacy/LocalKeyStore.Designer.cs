@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LocalKeyStore));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPublic = new System.Windows.Forms.TabPage();
             this.btnPubKeyFilter = new System.Windows.Forms.Button();
@@ -617,6 +618,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 557);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LocalKeyStore";
             this.Text = "LocalKeyStore";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LocalKeyStore_FormClosing);
