@@ -117,6 +117,7 @@
             this.btnDecryptClipboard.TabIndex = 7;
             this.btnDecryptClipboard.Text = "Form to Decrypt Clipboard";
             this.btnDecryptClipboard.UseVisualStyleBackColor = true;
+            this.btnDecryptClipboard.Click += new System.EventHandler(this.btnDecryptClipboard_Click);
             // 
             // button7
             // 

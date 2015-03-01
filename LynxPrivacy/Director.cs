@@ -113,5 +113,18 @@ namespace LynxPrivacy
             frmEncryptClipboard.Show();
         }
 
+        private void btnDecryptClipboard_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() == typeof(DecryptClipboard)) {
+                    form.Activate();
+                    return;
+                }
+            }
+            DecryptClipboard frmDecryptClipboard = new DecryptClipboard();
+            frmDecryptClipboard.MdiParent = this.MdiParent;
+            frmDecryptClipboard.Show();
+        }
+
     }
 }
