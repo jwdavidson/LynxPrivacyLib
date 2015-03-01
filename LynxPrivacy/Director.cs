@@ -77,7 +77,7 @@ namespace LynxPrivacy
         private void btnEncryptFile_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms) {
-                if (form.GetType() == typeof(KeyServer)) {
+                if (form.GetType() == typeof(EncryptFile)) {
                     form.Activate();
                     return;
                 }
@@ -90,7 +90,7 @@ namespace LynxPrivacy
         private void btnDecryptFile_Click(object sender, EventArgs e)
         {
             foreach (Form form in Application.OpenForms) {
-                if (form.GetType() == typeof(KeyServer)) {
+                if (form.GetType() == typeof(DecryptFile)) {
                     form.Activate();
                     return;
                 }
@@ -98,6 +98,19 @@ namespace LynxPrivacy
             DecryptFile frmDecryptFile = new DecryptFile();
             frmDecryptFile.MdiParent = this.MdiParent;
             frmDecryptFile.Show();
+        }
+
+        private void btnEncryptClipboard_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in Application.OpenForms) {
+                if (form.GetType() == typeof(EncryptClipboard)) {
+                    form.Activate();
+                    return;
+                }
+            }
+            EncryptClipboard frmEncryptClipboard = new EncryptClipboard();
+            frmEncryptClipboard.MdiParent = this.MdiParent;
+            frmEncryptClipboard.Show();
         }
 
     }

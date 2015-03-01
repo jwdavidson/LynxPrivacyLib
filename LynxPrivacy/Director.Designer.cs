@@ -107,6 +107,7 @@
             this.btnEncryptClipboard.TabIndex = 6;
             this.btnEncryptClipboard.Text = "Form to Encrypt Clipboard";
             this.btnEncryptClipboard.UseVisualStyleBackColor = true;
+            this.btnEncryptClipboard.Click += new System.EventHandler(this.btnEncryptClipboard_Click);
             // 
             // btnDecryptClipboard
             // 

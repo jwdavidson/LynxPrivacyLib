@@ -105,6 +105,12 @@
     <Compile Include="Director.Designer.cs">
       <DependentUpon>Director.cs</DependentUpon>
     </Compile>
+    <Compile Include="EncryptClipboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EncryptClipboard.Designer.cs">
+      <DependentUpon>EncryptClipboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="EncryptFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Director.resx">
       <DependentUpon>Director.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EncryptClipboard.resx">
+      <DependentUpon>EncryptClipboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EncryptFile.resx">
       <DependentUpon>EncryptFile.cs</DependentUpon>
