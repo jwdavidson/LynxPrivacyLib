@@ -40,6 +40,23 @@
             this.btnImportKey = new System.Windows.Forms.Button();
             this.btnRefreshFromKeyserver = new System.Windows.Forms.Button();
             this.dgvPublicKeys = new System.Windows.Forms.DataGridView();
+            this.tabSecret = new System.Windows.Forms.TabPage();
+            this.btnSecSetLocalTrust = new System.Windows.Forms.Button();
+            this.btnExpireKey = new System.Windows.Forms.Button();
+            this.btnRevoke = new System.Windows.Forms.Button();
+            this.btnChangePassphrase = new System.Windows.Forms.Button();
+            this.btnExportSecKey = new System.Windows.Forms.Button();
+            this.btnSecKeyFilter = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSecKeyfilter = new System.Windows.Forms.TextBox();
+            this.dgvSecretKeys = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiExportKey = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUploadKey = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSetLocalTrust = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnImportSecretKey = new System.Windows.Forms.Button();
+            this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyUserIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyStoreIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,19 +71,9 @@
             this.fingerprintDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerTrustDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabSecret = new System.Windows.Forms.TabPage();
-            this.btnSecSetLocalTrust = new System.Windows.Forms.Button();
-            this.btnExpireKey = new System.Windows.Forms.Button();
-            this.btnRevoke = new System.Windows.Forms.Button();
-            this.btnChangePassphrase = new System.Windows.Forms.Button();
-            this.btnExportSecKey = new System.Windows.Forms.Button();
-            this.btnSecKeyFilter = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSecKeyfilter = new System.Windows.Forms.TextBox();
-            this.dgvSecretKeys = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelectedSK = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DefaultKey = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,18 +87,13 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiExportKey = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiUploadKey = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiSetLocalTrust = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnImportSecretKey = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPublic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).BeginInit();
             this.tabSecret.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSecretKeys)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -206,6 +208,7 @@
             this.dgvPublicKeys.AutoGenerateColumns = false;
             this.dgvPublicKeys.ColumnHeadersHeight = 22;
             this.dgvPublicKeys.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selected,
             this.keyUserIdDataGridViewTextBoxColumn,
             this.keyStoreIdDataGridViewTextBoxColumn,
             this.userNameDataGridViewTextBoxColumn,
@@ -221,14 +224,192 @@
             this.ownerTrustDataGridViewTextBoxColumn,
             this.keyTypeDataGridViewTextBoxColumn});
             this.dgvPublicKeys.DataSource = this.keyViewBindingSource;
-            this.dgvPublicKeys.Location = new System.Drawing.Point(3, 111);
+            this.dgvPublicKeys.Location = new System.Drawing.Point(-4, 105);
             this.dgvPublicKeys.Name = "dgvPublicKeys";
             this.dgvPublicKeys.ReadOnly = true;
             this.dgvPublicKeys.Size = new System.Drawing.Size(851, 393);
             this.dgvPublicKeys.TabIndex = 0;
+            this.dgvPublicKeys.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPublicKeys_CellClick);
             this.dgvPublicKeys.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPublicKeys_ColumnHeaderMouseClick);
             this.dgvPublicKeys.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPublicKeys_DataBindingComplete);
             this.dgvPublicKeys.RowContextMenuStripNeeded += new System.Windows.Forms.DataGridViewRowContextMenuStripNeededEventHandler(this.dgvPublicKeys_RowContextMenuStripNeeded);
+            // 
+            // tabSecret
+            // 
+            this.tabSecret.Controls.Add(this.btnImportSecretKey);
+            this.tabSecret.Controls.Add(this.btnSecSetLocalTrust);
+            this.tabSecret.Controls.Add(this.btnExpireKey);
+            this.tabSecret.Controls.Add(this.btnRevoke);
+            this.tabSecret.Controls.Add(this.btnChangePassphrase);
+            this.tabSecret.Controls.Add(this.btnExportSecKey);
+            this.tabSecret.Controls.Add(this.btnSecKeyFilter);
+            this.tabSecret.Controls.Add(this.label2);
+            this.tabSecret.Controls.Add(this.txtSecKeyfilter);
+            this.tabSecret.Controls.Add(this.dgvSecretKeys);
+            this.tabSecret.Location = new System.Drawing.Point(4, 22);
+            this.tabSecret.Name = "tabSecret";
+            this.tabSecret.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSecret.Size = new System.Drawing.Size(860, 507);
+            this.tabSecret.TabIndex = 1;
+            this.tabSecret.Text = "Secret Keys";
+            this.tabSecret.UseVisualStyleBackColor = true;
+            // 
+            // btnSecSetLocalTrust
+            // 
+            this.btnSecSetLocalTrust.Location = new System.Drawing.Point(420, 16);
+            this.btnSecSetLocalTrust.Name = "btnSecSetLocalTrust";
+            this.btnSecSetLocalTrust.Size = new System.Drawing.Size(90, 23);
+            this.btnSecSetLocalTrust.TabIndex = 16;
+            this.btnSecSetLocalTrust.Text = "Set Local Trust";
+            this.btnSecSetLocalTrust.UseVisualStyleBackColor = true;
+            this.btnSecSetLocalTrust.Click += new System.EventHandler(this.btnSecSetLocalTrust_Click);
+            // 
+            // btnExpireKey
+            // 
+            this.btnExpireKey.Location = new System.Drawing.Point(339, 16);
+            this.btnExpireKey.Name = "btnExpireKey";
+            this.btnExpireKey.Size = new System.Drawing.Size(75, 23);
+            this.btnExpireKey.TabIndex = 15;
+            this.btnExpireKey.Text = "Expire Key";
+            this.btnExpireKey.UseVisualStyleBackColor = true;
+            this.btnExpireKey.Click += new System.EventHandler(this.btnExpireKey_Click);
+            // 
+            // btnRevoke
+            // 
+            this.btnRevoke.Location = new System.Drawing.Point(258, 16);
+            this.btnRevoke.Name = "btnRevoke";
+            this.btnRevoke.Size = new System.Drawing.Size(75, 23);
+            this.btnRevoke.TabIndex = 14;
+            this.btnRevoke.Text = "Revoke Key";
+            this.btnRevoke.UseVisualStyleBackColor = true;
+            this.btnRevoke.Click += new System.EventHandler(this.btnRevoke_Click);
+            // 
+            // btnChangePassphrase
+            // 
+            this.btnChangePassphrase.Location = new System.Drawing.Point(121, 16);
+            this.btnChangePassphrase.Name = "btnChangePassphrase";
+            this.btnChangePassphrase.Size = new System.Drawing.Size(131, 23);
+            this.btnChangePassphrase.TabIndex = 13;
+            this.btnChangePassphrase.Text = "Change Pass Phrase";
+            this.btnChangePassphrase.UseVisualStyleBackColor = true;
+            this.btnChangePassphrase.Click += new System.EventHandler(this.btnChangePassphrase_Click);
+            // 
+            // btnExportSecKey
+            // 
+            this.btnExportSecKey.Location = new System.Drawing.Point(516, 16);
+            this.btnExportSecKey.Name = "btnExportSecKey";
+            this.btnExportSecKey.Size = new System.Drawing.Size(75, 23);
+            this.btnExportSecKey.TabIndex = 12;
+            this.btnExportSecKey.Text = "Export Key";
+            this.btnExportSecKey.UseVisualStyleBackColor = true;
+            this.btnExportSecKey.Click += new System.EventHandler(this.btnExportSecKey_Click);
+            // 
+            // btnSecKeyFilter
+            // 
+            this.btnSecKeyFilter.Location = new System.Drawing.Point(235, 73);
+            this.btnSecKeyFilter.Name = "btnSecKeyFilter";
+            this.btnSecKeyFilter.Size = new System.Drawing.Size(86, 23);
+            this.btnSecKeyFilter.TabIndex = 11;
+            this.btnSecKeyFilter.Text = "Filter";
+            this.btnSecKeyFilter.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(37, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Enter Filter:";
+            // 
+            // txtSecKeyfilter
+            // 
+            this.txtSecKeyfilter.Location = new System.Drawing.Point(100, 73);
+            this.txtSecKeyfilter.Name = "txtSecKeyfilter";
+            this.txtSecKeyfilter.Size = new System.Drawing.Size(117, 20);
+            this.txtSecKeyfilter.TabIndex = 9;
+            this.txtSecKeyfilter.Tag = "Enter Filter Data";
+            // 
+            // dgvSecretKeys
+            // 
+            this.dgvSecretKeys.AllowUserToAddRows = false;
+            this.dgvSecretKeys.AllowUserToDeleteRows = false;
+            this.dgvSecretKeys.AutoGenerateColumns = false;
+            this.dgvSecretKeys.ColumnHeadersHeight = 22;
+            this.dgvSecretKeys.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.SelectedSK,
+            this.DefaultKey,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewCheckBoxColumn2,
+            this.dataGridViewCheckBoxColumn3,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11});
+            this.dgvSecretKeys.DataSource = this.keyViewBindingSource;
+            this.dgvSecretKeys.Location = new System.Drawing.Point(6, 108);
+            this.dgvSecretKeys.Name = "dgvSecretKeys";
+            this.dgvSecretKeys.ReadOnly = true;
+            this.dgvSecretKeys.Size = new System.Drawing.Size(851, 393);
+            this.dgvSecretKeys.TabIndex = 1;
+            this.dgvSecretKeys.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSecretKeys_CellClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiExportKey,
+            this.tsmiUploadKey,
+            this.tsmiSetLocalTrust});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(206, 70);
+            // 
+            // tsmiExportKey
+            // 
+            this.tsmiExportKey.Name = "tsmiExportKey";
+            this.tsmiExportKey.Size = new System.Drawing.Size(205, 22);
+            this.tsmiExportKey.Text = "Export Key";
+            // 
+            // tsmiUploadKey
+            // 
+            this.tsmiUploadKey.Name = "tsmiUploadKey";
+            this.tsmiUploadKey.Size = new System.Drawing.Size(205, 22);
+            this.tsmiUploadKey.Text = "Upload Key to Key Server";
+            // 
+            // tsmiSetLocalTrust
+            // 
+            this.tsmiSetLocalTrust.Name = "tsmiSetLocalTrust";
+            this.tsmiSetLocalTrust.Size = new System.Drawing.Size(205, 22);
+            this.tsmiSetLocalTrust.Text = "Set Local Trust";
+            // 
+            // btnImportSecretKey
+            // 
+            this.btnImportSecretKey.Location = new System.Drawing.Point(40, 16);
+            this.btnImportSecretKey.Name = "btnImportSecretKey";
+            this.btnImportSecretKey.Size = new System.Drawing.Size(75, 23);
+            this.btnImportSecretKey.TabIndex = 17;
+            this.btnImportSecretKey.Text = "Import Key";
+            this.btnImportSecretKey.UseVisualStyleBackColor = true;
+            this.btnImportSecretKey.Click += new System.EventHandler(this.btnImportSecretKey_Click);
+            // 
+            // keyViewBindingSource
+            // 
+            this.keyViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeyView);
+            // 
+            // Selected
+            // 
+            this.Selected.FalseValue = "false";
+            this.Selected.HeaderText = "Selected";
+            this.Selected.IndeterminateValue = "false";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
+            this.Selected.TrueValue = "true";
             // 
             // keyUserIdDataGridViewTextBoxColumn
             // 
@@ -340,136 +521,6 @@
             this.keyTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.keyTypeDataGridViewTextBoxColumn.Width = 60;
             // 
-            // keyViewBindingSource
-            // 
-            this.keyViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeyView);
-            // 
-            // tabSecret
-            // 
-            this.tabSecret.Controls.Add(this.btnImportSecretKey);
-            this.tabSecret.Controls.Add(this.btnSecSetLocalTrust);
-            this.tabSecret.Controls.Add(this.btnExpireKey);
-            this.tabSecret.Controls.Add(this.btnRevoke);
-            this.tabSecret.Controls.Add(this.btnChangePassphrase);
-            this.tabSecret.Controls.Add(this.btnExportSecKey);
-            this.tabSecret.Controls.Add(this.btnSecKeyFilter);
-            this.tabSecret.Controls.Add(this.label2);
-            this.tabSecret.Controls.Add(this.txtSecKeyfilter);
-            this.tabSecret.Controls.Add(this.dgvSecretKeys);
-            this.tabSecret.Location = new System.Drawing.Point(4, 22);
-            this.tabSecret.Name = "tabSecret";
-            this.tabSecret.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSecret.Size = new System.Drawing.Size(860, 507);
-            this.tabSecret.TabIndex = 1;
-            this.tabSecret.Text = "Secret Keys";
-            this.tabSecret.UseVisualStyleBackColor = true;
-            // 
-            // btnSecSetLocalTrust
-            // 
-            this.btnSecSetLocalTrust.Location = new System.Drawing.Point(420, 16);
-            this.btnSecSetLocalTrust.Name = "btnSecSetLocalTrust";
-            this.btnSecSetLocalTrust.Size = new System.Drawing.Size(90, 23);
-            this.btnSecSetLocalTrust.TabIndex = 16;
-            this.btnSecSetLocalTrust.Text = "Set Local Trust";
-            this.btnSecSetLocalTrust.UseVisualStyleBackColor = true;
-            this.btnSecSetLocalTrust.Click += new System.EventHandler(this.btnSecSetLocalTrust_Click);
-            // 
-            // btnExpireKey
-            // 
-            this.btnExpireKey.Location = new System.Drawing.Point(339, 16);
-            this.btnExpireKey.Name = "btnExpireKey";
-            this.btnExpireKey.Size = new System.Drawing.Size(75, 23);
-            this.btnExpireKey.TabIndex = 15;
-            this.btnExpireKey.Text = "Expire Key";
-            this.btnExpireKey.UseVisualStyleBackColor = true;
-            this.btnExpireKey.Click += new System.EventHandler(this.btnExpireKey_Click);
-            // 
-            // btnRevoke
-            // 
-            this.btnRevoke.Location = new System.Drawing.Point(258, 16);
-            this.btnRevoke.Name = "btnRevoke";
-            this.btnRevoke.Size = new System.Drawing.Size(75, 23);
-            this.btnRevoke.TabIndex = 14;
-            this.btnRevoke.Text = "Revoke Key";
-            this.btnRevoke.UseVisualStyleBackColor = true;
-            this.btnRevoke.Click += new System.EventHandler(this.btnRevoke_Click);
-            // 
-            // btnChangePassphrase
-            // 
-            this.btnChangePassphrase.Location = new System.Drawing.Point(121, 16);
-            this.btnChangePassphrase.Name = "btnChangePassphrase";
-            this.btnChangePassphrase.Size = new System.Drawing.Size(131, 23);
-            this.btnChangePassphrase.TabIndex = 13;
-            this.btnChangePassphrase.Text = "Change Pass Phrase";
-            this.btnChangePassphrase.UseVisualStyleBackColor = true;
-            this.btnChangePassphrase.Click += new System.EventHandler(this.btnChangePassphrase_Click);
-            // 
-            // btnExportSecKey
-            // 
-            this.btnExportSecKey.Location = new System.Drawing.Point(516, 16);
-            this.btnExportSecKey.Name = "btnExportSecKey";
-            this.btnExportSecKey.Size = new System.Drawing.Size(75, 23);
-            this.btnExportSecKey.TabIndex = 12;
-            this.btnExportSecKey.Text = "Export Key";
-            this.btnExportSecKey.UseVisualStyleBackColor = true;
-            this.btnExportSecKey.Click += new System.EventHandler(this.btnExportSecKey_Click);
-            // 
-            // btnSecKeyFilter
-            // 
-            this.btnSecKeyFilter.Location = new System.Drawing.Point(235, 73);
-            this.btnSecKeyFilter.Name = "btnSecKeyFilter";
-            this.btnSecKeyFilter.Size = new System.Drawing.Size(86, 23);
-            this.btnSecKeyFilter.TabIndex = 11;
-            this.btnSecKeyFilter.Text = "Filter";
-            this.btnSecKeyFilter.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 76);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Enter Filter:";
-            // 
-            // txtSecKeyfilter
-            // 
-            this.txtSecKeyfilter.Location = new System.Drawing.Point(100, 73);
-            this.txtSecKeyfilter.Name = "txtSecKeyfilter";
-            this.txtSecKeyfilter.Size = new System.Drawing.Size(117, 20);
-            this.txtSecKeyfilter.TabIndex = 9;
-            this.txtSecKeyfilter.Tag = "Enter Filter Data";
-            // 
-            // dgvSecretKeys
-            // 
-            this.dgvSecretKeys.AllowUserToAddRows = false;
-            this.dgvSecretKeys.AllowUserToDeleteRows = false;
-            this.dgvSecretKeys.AutoGenerateColumns = false;
-            this.dgvSecretKeys.ColumnHeadersHeight = 22;
-            this.dgvSecretKeys.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.DefaultKey,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewCheckBoxColumn2,
-            this.dataGridViewCheckBoxColumn3,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11});
-            this.dgvSecretKeys.DataSource = this.keyViewBindingSource;
-            this.dgvSecretKeys.Location = new System.Drawing.Point(6, 108);
-            this.dgvSecretKeys.Name = "dgvSecretKeys";
-            this.dgvSecretKeys.ReadOnly = true;
-            this.dgvSecretKeys.Size = new System.Drawing.Size(851, 393);
-            this.dgvSecretKeys.TabIndex = 1;
-            this.dgvSecretKeys.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSecretKeys_CellClick);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "KeyUserId";
@@ -485,6 +536,16 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // SelectedSK
+            // 
+            this.SelectedSK.FalseValue = "false";
+            this.SelectedSK.HeaderText = "Selected";
+            this.SelectedSK.IndeterminateValue = "false";
+            this.SelectedSK.Name = "SelectedSK";
+            this.SelectedSK.ReadOnly = true;
+            this.SelectedSK.TrueValue = "true";
+            this.SelectedSK.Width = 60;
             // 
             // DefaultKey
             // 
@@ -587,43 +648,6 @@
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
             this.dataGridViewTextBoxColumn11.Width = 60;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiExportKey,
-            this.tsmiUploadKey,
-            this.tsmiSetLocalTrust});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(206, 70);
-            // 
-            // tsmiExportKey
-            // 
-            this.tsmiExportKey.Name = "tsmiExportKey";
-            this.tsmiExportKey.Size = new System.Drawing.Size(205, 22);
-            this.tsmiExportKey.Text = "Export Key";
-            // 
-            // tsmiUploadKey
-            // 
-            this.tsmiUploadKey.Name = "tsmiUploadKey";
-            this.tsmiUploadKey.Size = new System.Drawing.Size(205, 22);
-            this.tsmiUploadKey.Text = "Upload Key to Key Server";
-            // 
-            // tsmiSetLocalTrust
-            // 
-            this.tsmiSetLocalTrust.Name = "tsmiSetLocalTrust";
-            this.tsmiSetLocalTrust.Size = new System.Drawing.Size(205, 22);
-            this.tsmiSetLocalTrust.Text = "Set Local Trust";
-            // 
-            // btnImportSecretKey
-            // 
-            this.btnImportSecretKey.Location = new System.Drawing.Point(40, 16);
-            this.btnImportSecretKey.Name = "btnImportSecretKey";
-            this.btnImportSecretKey.Size = new System.Drawing.Size(75, 23);
-            this.btnImportSecretKey.TabIndex = 17;
-            this.btnImportSecretKey.Text = "Import Key";
-            this.btnImportSecretKey.UseVisualStyleBackColor = true;
-            this.btnImportSecretKey.Click += new System.EventHandler(this.btnImportSecretKey_Click);
-            // 
             // LocalKeyStore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -640,11 +664,11 @@
             this.tabPublic.ResumeLayout(false);
             this.tabPublic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).EndInit();
             this.tabSecret.ResumeLayout(false);
             this.tabSecret.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSecretKeys)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.keyViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -656,6 +680,29 @@
         private System.Windows.Forms.TabPage tabSecret;
         private System.Windows.Forms.DataGridView dgvPublicKeys;
         private System.Windows.Forms.BindingSource keyViewBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiExportKey;
+        private System.Windows.Forms.Button btnPubKeyFilter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtPubKeyFilter;
+        private System.Windows.Forms.Button btnSetLocalTrust;
+        private System.Windows.Forms.Button btnExportKey;
+        private System.Windows.Forms.Button btnUploadToKeyserver;
+        private System.Windows.Forms.Button btnImportKey;
+        private System.Windows.Forms.Button btnRefreshFromKeyserver;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUploadKey;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSetLocalTrust;
+        private System.Windows.Forms.DataGridView dgvSecretKeys;
+        private System.Windows.Forms.Button btnSecKeyFilter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSecKeyfilter;
+        private System.Windows.Forms.Button btnSecSetLocalTrust;
+        private System.Windows.Forms.Button btnExpireKey;
+        private System.Windows.Forms.Button btnRevoke;
+        private System.Windows.Forms.Button btnChangePassphrase;
+        private System.Windows.Forms.Button btnExportSecKey;
+        private System.Windows.Forms.Button btnImportSecretKey;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyUserIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyStoreIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
@@ -670,21 +717,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fingerprintDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerTrustDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem tsmiExportKey;
-        private System.Windows.Forms.Button btnPubKeyFilter;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtPubKeyFilter;
-        private System.Windows.Forms.Button btnSetLocalTrust;
-        private System.Windows.Forms.Button btnExportKey;
-        private System.Windows.Forms.Button btnUploadToKeyserver;
-        private System.Windows.Forms.Button btnImportKey;
-        private System.Windows.Forms.Button btnRefreshFromKeyserver;
-        private System.Windows.Forms.ToolStripMenuItem tsmiUploadKey;
-        private System.Windows.Forms.ToolStripMenuItem tsmiSetLocalTrust;
-        private System.Windows.Forms.DataGridView dgvSecretKeys;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn SelectedSK;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DefaultKey;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
@@ -698,14 +733,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.Button btnSecKeyFilter;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSecKeyfilter;
-        private System.Windows.Forms.Button btnSecSetLocalTrust;
-        private System.Windows.Forms.Button btnExpireKey;
-        private System.Windows.Forms.Button btnRevoke;
-        private System.Windows.Forms.Button btnChangePassphrase;
-        private System.Windows.Forms.Button btnExportSecKey;
-        private System.Windows.Forms.Button btnImportSecretKey;
     }
 }

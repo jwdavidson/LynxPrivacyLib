@@ -129,7 +129,7 @@ namespace LynxPrivacy
 
         private void dgvSecretKeys_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0) {
+            if (e.ColumnIndex == 0 || e.ColumnIndex == 1) {
                 if ((((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == null)
                     ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
                 else if (((bool)((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == true)
@@ -186,6 +186,18 @@ namespace LynxPrivacy
             ImportKeyToKeyStore frmImportKey = new ImportKeyToKeyStore();
             frmImportKey.SetCaller("Secret");
             frmImportKey.ShowDialog();
+        }
+
+        private void dgvPublicKeys_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0) {
+                if ((((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == null)
+                    ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
+                else if (((bool)((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value) == true)
+                    ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = false;
+                else
+                    ((DataGridView)sender).Rows[e.RowIndex].Cells[e.ColumnIndex].Value = true;
+            }
         }
     }
 }
