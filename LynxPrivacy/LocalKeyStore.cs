@@ -180,7 +180,19 @@ namespace LynxPrivacy
 
         private void btnChangePassphrase_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException(sender.ToString());
+            int cnt = 0;
+            int keyId = 0;
+            foreach (DataGridViewRow row in dgvSecretKeys.Rows) {
+                if ((bool)row.Cells[0].Value) {
+                    cnt++;
+                    keyId = (int)row.Cells[3].Value;
+                }
+            }
+            if (cnt == 1) {
+                ChangePassphrase frmChangePassphrase = new ChangePassphrase();
+                frmChangePassphrase.ConfigChangePassphrase(keyId);
+                frmChangePassphrase.ShowDialog();
+            }
         }
 
         private void btnRevoke_Click(object sender, EventArgs e)
