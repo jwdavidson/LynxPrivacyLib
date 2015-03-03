@@ -141,7 +141,13 @@ namespace LynxPrivacy
 
         private void btnExportKey_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException(sender.ToString());
+            foreach (DataGridViewRow row in dgvPublicKeys.Rows) {
+                if ((bool)row.Cells[0].Value) {
+                    ExportKeyFromKeyStore frmExportKey = new ExportKeyFromKeyStore();
+                    frmExportKey.ConfigExport("Public", (int)row.Cells[2].Value);
+                    frmExportKey.ShowDialog();
+                }
+            }
         }
 
         private void btnUploadToKeyserver_Click(object sender, EventArgs e)
@@ -163,7 +169,13 @@ namespace LynxPrivacy
 
         private void btnExportSecKey_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException(sender.ToString());
+            foreach (DataGridViewRow row in dgvPublicKeys.Rows) {
+                if ((bool)row.Cells[0].Value) {
+                    ExportKeyFromKeyStore frmExportKey = new ExportKeyFromKeyStore();
+                    frmExportKey.ConfigExport("Secret", (int)row.Cells[3].Value);
+                    frmExportKey.ShowDialog();
+                }
+            }
         }
 
         private void btnChangePassphrase_Click(object sender, EventArgs e)

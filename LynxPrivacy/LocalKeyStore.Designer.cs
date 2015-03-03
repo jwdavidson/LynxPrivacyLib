@@ -55,7 +55,6 @@
             this.tsmiUploadKey = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetLocalTrust = new System.Windows.Forms.ToolStripMenuItem();
             this.btnImportSecretKey = new System.Windows.Forms.Button();
-            this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyUserIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyStoreIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,10 +70,11 @@
             this.fingerprintDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ownerTrustDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keyTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.keyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SelectedSK = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DefaultKey = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -337,10 +337,10 @@
             this.dgvSecretKeys.AutoGenerateColumns = false;
             this.dgvSecretKeys.ColumnHeadersHeight = 22;
             this.dgvSecretKeys.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
             this.SelectedSK,
             this.DefaultKey,
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
@@ -397,10 +397,6 @@
             this.btnImportSecretKey.Text = "Import Key";
             this.btnImportSecretKey.UseVisualStyleBackColor = true;
             this.btnImportSecretKey.Click += new System.EventHandler(this.btnImportSecretKey_Click);
-            // 
-            // keyViewBindingSource
-            // 
-            this.keyViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeyView);
             // 
             // Selected
             // 
@@ -521,21 +517,9 @@
             this.keyTypeDataGridViewTextBoxColumn.ReadOnly = true;
             this.keyTypeDataGridViewTextBoxColumn.Width = 60;
             // 
-            // dataGridViewTextBoxColumn1
+            // keyViewBindingSource
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "KeyUserId";
-            this.dataGridViewTextBoxColumn1.HeaderText = "KeyUserId";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "KeyStoreId";
-            this.dataGridViewTextBoxColumn2.HeaderText = "KeyStoreId";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
+            this.keyViewBindingSource.DataSource = typeof(LynxPrivacyLib.KeyView);
             // 
             // SelectedSK
             // 
@@ -553,6 +537,22 @@
             this.DefaultKey.Name = "DefaultKey";
             this.DefaultKey.ReadOnly = true;
             this.DefaultKey.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "KeyUserId";
+            this.dataGridViewTextBoxColumn1.HeaderText = "KeyUserId";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "KeyStoreId";
+            this.dataGridViewTextBoxColumn2.HeaderText = "KeyStoreId";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -717,10 +717,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fingerprintDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownerTrustDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn SelectedSK;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DefaultKey;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
