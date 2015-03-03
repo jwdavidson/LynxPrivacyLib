@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EncryptClipboard));
             this.btnEncryptSign = new System.Windows.Forms.Button();
             this.btnEncryptOnly = new System.Windows.Forms.Button();
             this.btnSignOnly = new System.Windows.Forms.Button();
@@ -471,6 +472,7 @@
             this.Controls.Add(this.btnPubKeyFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPubKeyFilter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EncryptClipboard";
             this.Text = "EncryptClipboard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EncryptClipboard_FormClosing);

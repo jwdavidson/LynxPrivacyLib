@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LynxPrivacyLib;
+using LynxPrivacy.LocalKeyStoreDialogs;
 
 namespace LynxPrivacy
 {
@@ -150,7 +151,9 @@ namespace LynxPrivacy
 
         private void btnImportKey_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException(sender.ToString());
+            ImportKeyToKeyStore frmImportKey = new ImportKeyToKeyStore();
+            frmImportKey.SetCaller("Public");
+            frmImportKey.ShowDialog();
         }
 
         private void btnRefreshFromKeyserver_Click(object sender, EventArgs e)
@@ -176,6 +179,13 @@ namespace LynxPrivacy
         private void btnExpireKey_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException(sender.ToString());
+        }
+
+        private void btnImportSecretKey_Click(object sender, EventArgs e)
+        {
+            ImportKeyToKeyStore frmImportKey = new ImportKeyToKeyStore();
+            frmImportKey.SetCaller("Secret");
+            frmImportKey.ShowDialog();
         }
     }
 }

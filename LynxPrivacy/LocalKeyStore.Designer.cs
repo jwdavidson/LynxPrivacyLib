@@ -84,6 +84,7 @@
             this.tsmiExportKey = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUploadKey = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetLocalTrust = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnImportSecretKey = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPublic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicKeys)).BeginInit();
@@ -345,6 +346,7 @@
             // 
             // tabSecret
             // 
+            this.tabSecret.Controls.Add(this.btnImportSecretKey);
             this.tabSecret.Controls.Add(this.btnSecSetLocalTrust);
             this.tabSecret.Controls.Add(this.btnExpireKey);
             this.tabSecret.Controls.Add(this.btnRevoke);
@@ -404,7 +406,7 @@
             // 
             // btnExportSecKey
             // 
-            this.btnExportSecKey.Location = new System.Drawing.Point(40, 16);
+            this.btnExportSecKey.Location = new System.Drawing.Point(516, 16);
             this.btnExportSecKey.Name = "btnExportSecKey";
             this.btnExportSecKey.Size = new System.Drawing.Size(75, 23);
             this.btnExportSecKey.TabIndex = 12;
@@ -612,6 +614,16 @@
             this.tsmiSetLocalTrust.Size = new System.Drawing.Size(205, 22);
             this.tsmiSetLocalTrust.Text = "Set Local Trust";
             // 
+            // btnImportSecretKey
+            // 
+            this.btnImportSecretKey.Location = new System.Drawing.Point(40, 16);
+            this.btnImportSecretKey.Name = "btnImportSecretKey";
+            this.btnImportSecretKey.Size = new System.Drawing.Size(75, 23);
+            this.btnImportSecretKey.TabIndex = 17;
+            this.btnImportSecretKey.Text = "Import Key";
+            this.btnImportSecretKey.UseVisualStyleBackColor = true;
+            this.btnImportSecretKey.Click += new System.EventHandler(this.btnImportSecretKey_Click);
+            // 
             // LocalKeyStore
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -694,5 +706,6 @@
         private System.Windows.Forms.Button btnRevoke;
         private System.Windows.Forms.Button btnChangePassphrase;
         private System.Windows.Forms.Button btnExportSecKey;
+        private System.Windows.Forms.Button btnImportSecretKey;
     }
 }

@@ -19,6 +19,7 @@ namespace LynxPrivacy
         {
             InitializeComponent();
             Application.ThreadException += Application_ThreadException;
+            btnLocalSearch.Visible = false;
         }
 
         void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

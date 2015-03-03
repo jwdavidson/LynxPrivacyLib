@@ -135,6 +135,12 @@
     <Compile Include="LocalKeyStore.Designer.cs">
       <DependentUpon>LocalKeyStore.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalKeyStoreDialogs\ImportKeyToKeyStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocalKeyStoreDialogs\ImportKeyToKeyStore.Designer.cs">
+      <DependentUpon>ImportKeyToKeyStore.cs</DependentUpon>
+    </Compile>
     <Compile Include="LynxPrivacyTopMDI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LocalKeyStore.resx">
       <DependentUpon>LocalKeyStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalKeyStoreDialogs\ImportKeyToKeyStore.resx">
+      <DependentUpon>ImportKeyToKeyStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LynxPrivacyTopMDI.resx">
       <DependentUpon>LynxPrivacyTopMDI.cs</DependentUpon>

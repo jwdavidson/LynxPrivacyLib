@@ -28,6 +28,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DecryptClipboard));
             this.ownerTrustDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isSigningKeyDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isEncryptionKeyDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -259,7 +260,7 @@
             // 
             this.btnSignOnly.Location = new System.Drawing.Point(29, 380);
             this.btnSignOnly.Name = "btnSignOnly";
-            this.btnSignOnly.Size = new System.Drawing.Size(78, 25);
+            this.btnSignOnly.Size = new System.Drawing.Size(97, 25);
             this.btnSignOnly.TabIndex = 41;
             this.btnSignOnly.Text = "Verify Signature";
             this.btnSignOnly.UseVisualStyleBackColor = true;
@@ -459,6 +460,7 @@
             this.Controls.Add(this.btnPubKeyFilter);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPubKeyFilter);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DecryptClipboard";
             this.Text = "DecryptClipboard";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DecryptClipboard_FormClosing);
